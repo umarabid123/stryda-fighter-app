@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import {
-  Image,
   KeyboardTypeOptions,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
   View,
+  useColorScheme,
 } from 'react-native';
-import { wp } from '../../constant/constants';
-import { Colors } from '../../constant/themes';
+import { Colors, Spacing, Typography, BorderRadius } from '../../constant';
+import AppText from './AppText';
 
 
-const fullWidth = wp(90);
 export default function CustomInputField({
   label,
   placeholder,
@@ -23,6 +21,8 @@ export default function CustomInputField({
   inputStyle,
   labelStyle,
   numberOfLines,
+  value,
+  onChangeText,
 }: {
   label?: string;
   placeholder?: string;
@@ -33,50 +33,70 @@ export default function CustomInputField({
   inputStyle?: object;
   labelStyle?: object;
   numberOfLines?: number;
+  value?: string;
+  onChangeText?: (text: string) => void;
 }) {
-  const [secureText, setSecureText] = useState(true);
+  const colorScheme = useColorScheme();
+  const colors = colorScheme === 'dark' ? Colors.dark : Colors.light;
+  const [secureText, setSecureText] = useState(secureTextEntry || type === 'password');
+  const isPassword = type === 'password' || secureTextEntry;
+  
   return (
     <View style={[styles.container, containerStyle]}>
-      <Text style={[styles.label, labelStyle]}>{label}</Text>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={[styles.input, inputStyle]}
-          placeholder={placeholder}
-          placeholderTextColor="#797979"
-          keyboardType={keyboardType}
-          secureTextEntry={secureTextEntry}
-          multiline={true}
+      {label && (
+        <AppText
+          text={label}
+          fontSize={Typography.fontSize.sm}
+          fontName="CircularStd-Medium"
+          color={colors.text}
+          style={[styles.label, labelStyle]}
         />
-        {type === 'password' && (
-          <TouchableOpacity onPress={() => setSecureText(!secureText)}>
-            <Image
-              source={secureText && require('../../assets/image/eye-off.png')}
-              style={styles.eyeIcon}
+      )}
+      <View style={[styles.inputContainer, { backgroundColor: 'rgba(255, 255, 255, 0.08)' }]}>
+        <TextInput
+          style={[styles.input, inputStyle, { color: colors.textTertiary }]}
+          placeholder={placeholder}
+          placeholderTextColor="rgba(255, 255, 255, 0.5)"
+          keyboardType={keyboardType}
+          secureTextEntry={isPassword ? secureText : false}
+          multiline={numberOfLines ? numberOfLines > 1 : false}
+          value={value}
+          onChangeText={onChangeText}
+        />
+        {isPassword && (
+          <TouchableOpacity onPress={() => setSecureText(!secureText)} style={styles.iconButton}>
+            <AppText
+              text={secureText ? '👁️' : '👁️‍🗨️'}
+              fontSize={Typography.fontSize.lg}
+              color={colors.textSecondary}
             />
           </TouchableOpacity>
         )}
 
         {type === 'search' && (
-          <TouchableOpacity>
-            <Image
-              source={require('../../assets/image/search-input.png')}
-              style={styles.eyeIcon}
+          <TouchableOpacity style={styles.iconButton}>
+            <AppText
+              text="🔍"
+              fontSize={Typography.fontSize.lg}
+              color={colors.textSecondary}
             />
           </TouchableOpacity>
         )}
         {type === 'calender' && (
-          <TouchableOpacity>
-            <Image
-              source={require('../../assets/image/Calendar.png')}
-              style={styles.eyeIcon}
+          <TouchableOpacity style={styles.iconButton}>
+            <AppText
+              text="📅"
+              fontSize={Typography.fontSize.lg}
+              color={colors.textSecondary}
             />
           </TouchableOpacity>
         )}
         {type === 'watch' && (
-          <TouchableOpacity>
-            <Image
-              source={require('../../assets/image/watch-icon-gray.png')}
-              style={styles.eyeIcon}
+          <TouchableOpacity style={styles.iconButton}>
+            <AppText
+              text="🕐"
+              fontSize={Typography.fontSize.lg}
+              color={colors.textSecondary}
             />
           </TouchableOpacity>
         )}
@@ -90,30 +110,29 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   label: {
-    fontSize: 12,
-    paddingBottom: 4,
-    color: Colors.darkGray,
-    lineHeight: 18,
+    marginBottom: Spacing.xs,
+    letterSpacing: 0.24,
   },
   inputContainer: {
+    borderRadius: BorderRadius.md,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md,
+    gap: Spacing.xs,
     position: 'relative',
   },
   input: {
-    borderWidth: 1,
-    borderColor: Colors.lightGrey,
-    borderRadius: 14,
-    paddingVertical: 15,
-    paddingHorizontal: 12,
-    fontSize: 14,
-    color: '#000',
-    width: fullWidth,
+    fontSize: Typography.fontSize.md,
+    fontWeight: Typography.fontWeight.light,
+    padding: 0,
+    letterSpacing: 0.28,
+    flex: 1,
   },
-  eyeIcon: {
-    width: 20,
-    height: 20,
-    resizeMode: 'contain',
+  iconButton: {
     position: 'absolute',
-    top: -36,
-    right: 10,
+    right: Spacing.lg,
+    top: Spacing.md,
+    padding: Spacing.xs,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

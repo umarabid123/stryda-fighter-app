@@ -1,0 +1,134 @@
+# TaskCraft App Rules
+
+## CRITICAL: No Static Values
+
+**NEVER use hardcoded static values in this codebase. ALWAYS use constants from the constants directory.**
+
+### Forbidden:
+- ❌ Hardcoded colors: `'#ffffff'`, `'#000000'`, `'#121212'`, etc.
+- ❌ Hardcoded spacing: `20`, `16`, `24`, `padding: 10`, `margin: 15`, etc.
+- ❌ Hardcoded font sizes: `fontSize: 16`, `fontSize: 24`, etc.
+- ❌ Hardcoded font weights: `'bold'`, `'600'`, etc.
+- ❌ Hardcoded text strings: `'Welcome'`, `'Click here'`, etc.
+- ❌ Hardcoded border radius: `borderRadius: 8`, `borderRadius: 12`, etc.
+
+### Required:
+- ✅ Use `Colors.light` or `Colors.dark` for all colors
+- ✅ Use `Spacing` constants for all padding, margin, and spacing values
+- ✅ Use `Typography.fontSize` for all font sizes
+- ✅ Use `Typography.fontWeight` for all font weights
+- ✅ Use `Typography.lineHeight` for all line heights
+- ✅ Use `BorderRadius` for all border radius values
+- ✅ Use `AppText` for all user-facing text strings
+- ✅ Use `useColorScheme()` hook to determine light/dark mode and select appropriate color set
+
+### Example:
+```typescript
+// ❌ BAD - Static values
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#ffffff',
+    padding: 20,
+    borderRadius: 8,
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000000',
+  },
+});
+
+// ✅ GOOD - Using constants
+import { Colors, Spacing, Typography, BorderRadius } from '../constants';
+
+const isDarkMode = useColorScheme() === 'dark';
+const colors = isDarkMode ? Colors.dark : Colors.light;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.background,
+    padding: Spacing.lg,
+    borderRadius: BorderRadius.md,
+  },
+  text: {
+    fontSize: Typography.fontSize.md,
+    fontWeight: Typography.fontWeight.bold,
+    color: colors.text,
+  },
+});
+```
+
+### Required Components:
+- ✅ **ALWAYS use `Button` component** from `src/components/Button` for all buttons
+- ✅ **ALWAYS use `AppText` component** from `src/components/AppText` for all text rendering
+- ✅ **ALWAYS use `AppTextInput` component** from `src/components/TextInput` for all text inputs
+- ❌ **NEVER use** `<TouchableOpacity>` with `<Text>` for buttons - use `Button` component
+- ❌ **NEVER use** React Native's `<Text>` directly - use `AppText` component
+- ❌ **NEVER use** React Native's `<TextInput>` directly - use `AppTextInput` component
+
+### When creating new components:
+1. Always import constants from `src/constants`
+2. Use `useColorScheme()` to get theme mode
+3. Select appropriate color set based on theme
+4. Use constants for ALL values - no exceptions
+5. If a constant doesn't exist, add it to the appropriate constants file first
+6. **ALWAYS use `Button` component** for buttons instead of TouchableOpacity + Text
+7. **ALWAYS use `AppText` component** for text instead of React Native's Text
+8. **ALWAYS use `AppTextInput` component** for text inputs instead of React Native's TextInput
+
+### Constants Structure:
+- `src/constants/colors.ts` - All color definitions
+- `src/constants/spacing.ts` - Spacing and border radius values
+- `src/constants/typography.ts` - Font sizes, weights, line heights
+- `src/constants/text.ts` - All user-facing text strings
+- `src/constants/index.ts` - Central export file
+
+### Assets Structure:
+- `src/assets/images/index.ts` - Centralized image exports - **ALWAYS import images from this file**
+- ❌ **NEVER use** `require('./path/to/image.png')` directly in components
+- ✅ **ALWAYS use** `import { ImageName } from '../assets/images'` or `import { ImageName } from '@/assets/images'`
+
+### Branding Structure:
+- `src/constants/branding.ts` - App name and logo configuration - **ALWAYS use branding constants**
+- ❌ **NEVER hardcode** app name or logo text in components
+- ✅ **ALWAYS use** `AppBranding.name` or `AppBranding.displayName` for app name
+- ✅ **ALWAYS use** `<Logo />` component from `src/components/Logo` for logo display
+- Change app branding in `src/constants/branding.ts` to update throughout the entire app
+
+### Example:
+```typescript
+// ❌ BAD - Direct require
+const image = require('../assets/images/welcome.png');
+
+// ✅ GOOD - Import from images index
+import { WelcomeImage1 } from '../assets/images';
+
+// ❌ BAD - Hardcoded app name
+<Text>Welcome to Mtodo</Text>
+
+// ✅ GOOD - Use branding constant
+import { AppBranding } from '../constants';
+<AppText>Welcome to {AppBranding.name}</AppText>
+
+// ❌ BAD - Hardcoded logo text
+<Text>Mtodo Logo</Text>
+
+// ✅ GOOD - Use Logo component
+import Logo from '../components/Logo';
+<Logo variant="h1" color="background" />
+
+// ❌ BAD - Direct TextInput
+<TextInput
+  style={{ backgroundColor: '#ffffff', padding: 10 }}
+  placeholder="Enter text"
+/>
+
+// ✅ GOOD - Use AppTextInput component
+import AppTextInput from '../components/TextInput';
+<AppTextInput
+  placeholder="Enter text"
+  label="Email"
+  error="Invalid email"
+/>
+```
+

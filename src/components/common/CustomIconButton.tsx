@@ -18,6 +18,7 @@ export default function CustomIconButton({
   textStyle,
   source,
   iconStyle,
+  onPress,
 }: {
   text?: string;
   route?: string;
@@ -25,16 +26,19 @@ export default function CustomIconButton({
   textStyle?: TextStyle | TextStyle[];
   source?: any;
   iconStyle?: any;
+  onPress?: () => void;
 }) {
   return (
-    <TouchableOpacity style={[styles.button, btnStyle]}>
+    <TouchableOpacity style={[styles.button, btnStyle]} onPress={onPress}>
       <Text style={[styles.buttonText, textStyle]}>{text}</Text>
 
-      <Image
-        source={source}
-        style={[styles.icon, iconStyle]}
-        resizeMode="contain"
-      />
+      {source && (
+        <Image
+          source={source}
+          style={[styles.icon, iconStyle]}
+          resizeMode="contain"
+        />
+      )}
     </TouchableOpacity>
   );
 }
