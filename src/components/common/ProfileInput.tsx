@@ -31,7 +31,7 @@ export default function ProfileInput({
         text={label}
         fontSize={Typography.fontSize.md}
         fontName="CircularStd-Medium"
-        color={colors.text}
+        color={colors.white}
         style={styles.label}
       />
       {editable ? (

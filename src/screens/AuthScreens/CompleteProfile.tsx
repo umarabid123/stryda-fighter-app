@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -9,63 +9,63 @@ import {
   useColorScheme,
   TouchableOpacity,
   Image,
-} from "react-native"
-import { useNavigation } from "@react-navigation/native"
-import type { NavigationProp } from "@react-navigation/native"
-import { Colors, Spacing, Typography, BorderRadius } from "../../constant"
-import AppText from "../../components/common/AppText"
-import AppButton from "../../components/common/AppButton"
-import ProfileInput from "../../components/common/ProfileInput"
-import MeshGradientBackground from "../../components/common/MeshGradientBackground"
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NavigationProp } from '@react-navigation/native';
+import { Colors, Spacing, Typography, BorderRadius } from '../../constant';
+import AppText from '../../components/common/AppText';
+import AppButton from '../../components/common/AppButton';
+import ProfileInput from '../../components/common/ProfileInput';
+import MeshGradientBackground from '../../components/common/MeshGradientBackground';
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 // Design dimensions from Figma: 393px width x 852px height
-const DESIGN_WIDTH = 393
-const DESIGN_HEIGHT = 852
+const DESIGN_WIDTH = 393;
+const DESIGN_HEIGHT = 852;
 
 interface CompleteProfileProps {
-  onComplete?: () => void
+  onComplete?: () => void;
 }
 
 export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
-  const navigation = useNavigation<NavigationProp<any>>()
-  const colorScheme = useColorScheme()
-  const colors = colorScheme === "dark" ? Colors.dark : Colors.light
+  const navigation = useNavigation<NavigationProp<any>>();
+  const colorScheme = useColorScheme();
+  const colors = colorScheme === 'dark' ? Colors.dark : Colors.light;
 
-  const [firstName, setFirstName] = useState("Jonathan")
-  const [lastName, setLastName] = useState("Haggerty")
-  const [dateOfBirth, setDateOfBirth] = useState("Mar 03, 2000")
-  const [gender, setGender] = useState("-")
-  const [country, setCountry] = useState("England")
+  const [firstName, setFirstName] = useState('Jonathan');
+  const [lastName, setLastName] = useState('Haggerty');
+  const [dateOfBirth, setDateOfBirth] = useState('Mar 03, 2000');
+  const [gender, setGender] = useState('-');
+  const [country, setCountry] = useState('England');
   const [socialLinks, setSocialLinks] = useState([
-    { platform: "Instagram", url: "https://www.instagram.com/laugepetersen" },
-  ])
+    { platform: 'Instagram', url: 'https://www.instagram.com/laugepetersen' },
+  ]);
 
   const handleAddSocialLink = () => {
-    setSocialLinks([...socialLinks, { platform: "", url: "" }])
-  }
+    setSocialLinks([...socialLinks, { platform: '', url: '' }]);
+  };
 
   const handleRemoveSocialLink = (index: number) => {
-    setSocialLinks(socialLinks.filter((_, i) => i !== index))
-  }
+    setSocialLinks(socialLinks.filter((_, i) => i !== index));
+  };
 
   const handleNext = () => {
     // Handle complete profile logic
-    console.log("Complete profile:", {
+    console.log('Complete profile:', {
       firstName,
       lastName,
       dateOfBirth,
       gender,
       country,
       socialLinks,
-    })
+    });
     // if (onComplete) {
     //   onComplete()
     // }
-    navigation.navigate("Welcome")
+    navigation.navigate('Welcome');
     // navigation?.navigate("Home")
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -73,7 +73,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
 
       <KeyboardAvoidingView
         style={styles.keyboardView}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         {/* Progress Bar */}
         <View style={styles.progressContainer}>
@@ -85,70 +85,60 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-        {/* Title and Description */}
-        <View style={styles.titleContainer}>
-          <AppText
-            text="Complete your account."
-            fontSize={Typography.fontSize.xxl}
-            fontName="CircularStd-Medium"
-            color={colors.text}
-            textAlign="center"
-            style={styles.title}
-          />
-          <AppText
-            text="You can change this later."
-            fontSize={Typography.fontSize.md}
-            fontName="CircularStd-Book"
-            color={colors.textSecondary}
-            textAlign="center"
-            style={styles.subtitle}
-          />
-        </View>
-
-    
-          {/* Profile Picture */}
-          <View style={styles.profilePictureContainer}>
-            <View style={styles.profilePicture}>
-              {/* Placeholder for profile picture */}
-              <View style={styles.profilePlaceholder} />
-            </View>
-            <TouchableOpacity style={styles.addPhotoButton}>
-              <AppText text="+" fontSize={Typography.fontSize.xxl} color={Colors.black} />
-            </TouchableOpacity>
+          {/* Title and Description */}
+          <View style={styles.titleContainer}>
+            <AppText
+              text="Complete your account."
+              fontSize={Typography.fontSize.xxl}
+              fontName="CircularStd-Medium"
+              color={colors.white}
+              textAlign="center"
+              style={styles.title}
+            />
+            <AppText
+              text="You can change this later."
+              fontSize={Typography.fontSize.md}
+              fontName="CircularStd-Book"
+              color={colors.textSecondary}
+              textAlign="center"
+              style={styles.subtitle}
+            />
           </View>
+
+          {/* Profile Picture */}
 
           {/* Form Fields */}
           <View style={styles.formContainer}>
             <ProfileInput
               label="First Name *"
-              value={firstName}
               onChangeText={setFirstName}
+              placeholder={firstName}
             />
             <ProfileInput
               label="Last Name *"
-              value={lastName}
+              placeholder={lastName}
               onChangeText={setLastName}
             />
             <ProfileInput
               label="Date of birth *"
-              value={dateOfBirth}
+              placeholder={dateOfBirth}
               onChangeText={setDateOfBirth}
               editable={false}
-              onPress={() => console.log("Open date picker")}
+              onPress={() => console.log('Open date picker')}
             />
             <ProfileInput
               label="Gender *"
-              value={gender}
+              placeholder={gender}
               onChangeText={setGender}
               editable={false}
-              onPress={() => console.log("Open gender picker")}
+              onPress={() => console.log('Open gender picker')}
             />
             <ProfileInput
               label="Country *"
-              value={country}
+              placeholder={country}
               onChangeText={setCountry}
               editable={false}
-              onPress={() => console.log("Open country picker")}
+              onPress={() => console.log('Open country picker')}
             />
 
             {/* Sports of Interest */}
@@ -157,11 +147,15 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
                 text="Sports of interest (optional)"
                 fontSize={Typography.fontSize.md}
                 fontName="CircularStd-Medium"
-                color={colors.text}
+                color={colors.white}
                 style={styles.sectionLabel}
               />
               <TouchableOpacity style={styles.addButton}>
-                <AppText text="+" fontSize={Typography.fontSize.xxl} color={Colors.black} />
+                <AppText
+                  text="+"
+                  fontSize={Typography.fontSize.xxl}
+                  color={Colors.black}
+                />
               </TouchableOpacity>
             </View>
 
@@ -172,7 +166,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
                   text="Social Links"
                   fontSize={Typography.fontSize.md}
                   fontName="CircularStd-Medium"
-                  color={colors.text}
+                  color={colors.white}
                   style={styles.sectionLabel}
                 />
                 <AppText
@@ -190,13 +184,14 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
                       text={link.platform}
                       fontSize={Typography.fontSize.lg}
                       fontName="CircularStd-Medium"
-                      color={colors.text}
+                      color={colors.white}
                     />
                     <AppText
                       text={link.url}
                       fontSize={Typography.fontSize.lg}
                       fontName="CircularStd-Book"
                       color={colors.textSecondary}
+                      lines={1}
                       style={styles.socialLinkUrl}
                     />
                   </View>
@@ -204,28 +199,40 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
                     style={styles.removeButton}
                     onPress={() => handleRemoveSocialLink(index)}
                   >
-                    <AppText text="×" fontSize={Typography.fontSize.xxl} color={colors.text} />
+                    <AppText
+                      text="×"
+                      fontSize={Typography.fontSize.xxl}
+                      color={colors.white}
+                    />
                   </TouchableOpacity>
                 </View>
               ))}
 
-              <TouchableOpacity style={styles.addButton} onPress={handleAddSocialLink}>
-                <AppText text="+" fontSize={Typography.fontSize.xxl} color={Colors.black} />
+              <TouchableOpacity
+                style={styles.addButton}
+                onPress={handleAddSocialLink}
+              >
+                <AppText
+                  text="+"
+                  fontSize={Typography.fontSize.xxl}
+                  color={Colors.black}
+                />
               </TouchableOpacity>
             </View>
+
+            <AppButton
+              text="Next"
+              onPress={handleNext}
+              btnStyle={styles.nextButton}
+              textStyle={styles.nextButtonText}
+            />
           </View>
         </ScrollView>
 
         {/* Next Button */}
-        <AppButton
-          text="Next"
-          onPress={handleNext}
-          btnStyle={styles.nextButton}
-          textStyle={styles.nextButtonText}
-        />
       </KeyboardAvoidingView>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -239,7 +246,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   progressContainer: {
-    position: "absolute",
+    position: 'absolute',
     top: (43 / DESIGN_HEIGHT) * SCREEN_HEIGHT, // 5.02% from top
     left: (SCREEN_WIDTH - (196.5 / DESIGN_WIDTH) * SCREEN_WIDTH) / 2,
     width: (196.5 / DESIGN_WIDTH) * SCREEN_WIDTH,
@@ -248,17 +255,17 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   progressBackground: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     borderRadius: 30,
   },
   progressFill: {
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     width: `${(98 / 196.5) * 100}%`, // 98px out of 196.5px (50%)
-    height: "100%",
+    height: '100%',
     backgroundColor: Colors.white,
     borderRadius: 30,
   },
@@ -267,16 +274,16 @@ const styles = StyleSheet.create({
     // top: (76 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
     // left: (SCREEN_WIDTH - (329 / DESIGN_WIDTH) * SCREEN_WIDTH) / 2,
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
-    alignItems: "center",
+    alignItems: 'center',
     gap: Spacing.xs,
     zIndex: 10,
   },
   title: {
-    width: "100%",
+    width: '100%',
     letterSpacing: -0.48,
   },
   subtitle: {
-    width: "100%",
+    width: '100%',
   },
   scrollView: {
     flex: 1,
@@ -287,7 +294,7 @@ const styles = StyleSheet.create({
     paddingBottom: (200 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
   },
   profilePictureContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: Spacing.xxl,
     marginTop: Spacing.xl,
   },
@@ -296,37 +303,37 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 60,
     backgroundColor: Colors.lightGrey,
-    justifyContent: "center",
-    alignItems: "center",
-    position: "relative",
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
   },
   profilePlaceholder: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
   },
   addPhotoButton: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
-    right: (SCREEN_WIDTH / 2) - 136 - 32 + 120 - 16, // Positioned at bottom right of profile picture
+    right: SCREEN_WIDTH / 2 - 136 - 32 + 120 - 16, // Positioned at bottom right of profile picture
     width: 32,
     height: 32,
     borderRadius: 16,
     backgroundColor: Colors.white,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   formContainer: {
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
     gap: Spacing.xxl,
   },
   sectionContainer: {
-    width: "100%",
+    width: '100%',
     gap: Spacing.md,
     paddingBottom: Spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: "rgba(255, 255, 255, 0.15)",
+    borderBottomColor: 'rgba(255, 255, 255, 0.15)',
   },
   sectionLabel: {
     letterSpacing: 0.28,
@@ -335,52 +342,48 @@ const styles = StyleSheet.create({
     gap: Spacing.xs,
   },
   socialLinkCard: {
-    backgroundColor: "rgba(255, 255, 255, 0.08)",
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
     borderRadius: BorderRadius.md,
     padding: Spacing.lg,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    position: "relative",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    position: 'relative',
   },
   socialLinkContent: {
     flex: 1,
     gap: Spacing.xs,
   },
   socialLinkUrl: {
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   removeButton: {
-    position: "absolute",
+    position: 'absolute',
     top: Spacing.sm,
     right: Spacing.sm,
     width: 20,
     height: 20,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   addButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
     backgroundColor: Colors.white,
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "flex-start",
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
   },
   nextButton: {
-    position: "absolute",
-    bottom: (83 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
-    left: (SCREEN_WIDTH - (120 / DESIGN_WIDTH) * SCREEN_WIDTH) / 2,
     width: (120 / DESIGN_WIDTH) * SCREEN_WIDTH,
     minWidth: 120,
-    height: 51,
     backgroundColor: Colors.white,
     borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.1)",
+    borderColor: 'rgba(255, 255, 255, 0.1)',
     borderRadius: BorderRadius.full,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: Spacing.xxxl,
     paddingVertical: Spacing.lg,
   },
@@ -389,5 +392,4 @@ const styles = StyleSheet.create({
     fontWeight: Typography.fontWeight.semibold,
     color: Colors.black,
   },
-})
-
+});

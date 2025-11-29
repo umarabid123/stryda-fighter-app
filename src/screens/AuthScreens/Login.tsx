@@ -17,6 +17,7 @@ import CustomIconButton from "../../components/common/CustomIconButton"
 import AppText from "../../components/common/AppText"
 import AppButton from "../../components/common/AppButton"
 import MeshGradientBackground from "../../components/common/MeshGradientBackground"
+import Divider from "../../components/common/Divider"
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
 
@@ -61,7 +62,7 @@ export default function Login({ onSignUpPress }: LoginProps) {
               text="Log In"
               fontSize={Typography.fontSize.xxl}
               fontName="CircularStd-Medium"
-              color={colors.text}
+              color={Colors.white}
               textAlign="center"
               style={styles.title}
             />
@@ -106,25 +107,14 @@ export default function Login({ onSignUpPress }: LoginProps) {
           </View>
 
           {/* Divider */}
-          <View style={styles.dividerContainer}>
-            <View style={styles.dividerLine} />
-            <AppText
-              text="or continue with"
-              fontSize={Typography.fontSize.sm}
-              fontName="CircularStd-Book"
-              color={colors.textSecondary}
-              style={styles.dividerText}
-            />
-            <View style={styles.dividerLine} />
-          </View>
-
+      <Divider />
           {/* Email Input */}
           <View style={styles.inputContainer}>
             <AppText
               text="E-mail"
               fontSize={Typography.fontSize.sm}
               fontName="CircularStd-Medium"
-              color={colors.text}
+              color={Colors.white}
               style={styles.inputLabel}
             />
             <TextInput
@@ -209,20 +199,6 @@ const styles = StyleSheet.create({
   socialIcon: {
     width: 24,
     height: 24,
-  },
-  dividerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: Spacing.xxl,
-    gap: Spacing.xl,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: "rgba(255, 255, 255, 0.05)",
-  },
-  dividerText: {
-    marginHorizontal: Spacing.xl,
   },
   inputContainer: {
     backgroundColor: "rgba(255, 255, 255, 0.08)",

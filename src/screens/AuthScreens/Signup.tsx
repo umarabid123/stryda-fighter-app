@@ -16,6 +16,7 @@ import CustomIconButton from "../../components/common/CustomIconButton"
 import AppText from "../../components/common/AppText"
 import AppButton from "../../components/common/AppButton"
 import MeshGradientBackground from "../../components/common/MeshGradientBackground"
+import Divider from "../../components/common/Divider"
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
 
@@ -66,7 +67,7 @@ export default function SignUp({ onNext }: SignUpProps) {
               text="Create account."
               fontSize={Typography.fontSize.xxl}
               fontName="CircularStd-Medium"
-              color={colors.text}
+              color={Colors.white}
               textAlign="center"
               style={styles.title}
             />
@@ -111,17 +112,7 @@ export default function SignUp({ onNext }: SignUpProps) {
           </View>
 
           {/* Divider */}
-          <View style={styles.dividerContainer}>
-            <View style={styles.dividerLine} />
-            <AppText
-              text="Or continue with"
-              fontSize={Typography.fontSize.md}
-              fontName="CircularStd-Book"
-              color={colors.textSecondary}
-              style={styles.dividerText}
-            />
-            <View style={styles.dividerLine} />
-          </View>
+          <Divider />
 
           {/* Email Input */}
           <View style={styles.inputContainer}>
@@ -129,7 +120,7 @@ export default function SignUp({ onNext }: SignUpProps) {
               text="E-mail"
               fontSize={Typography.fontSize.md}
               fontName="CircularStd-Medium"
-              color={colors.text}
+              color={Colors.white}
               style={styles.inputLabel}
             />
             <TextInput
@@ -203,7 +194,8 @@ const styles = StyleSheet.create({
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
     alignItems: "center",
     gap: Spacing.xs,
-    marginBottom: Spacing.xxl,
+    marginBottom: 60,
+    marginTop:32
   },
   title: {
     width: "100%",
@@ -239,20 +231,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
-  dividerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: Spacing.xxl,
-    gap: Spacing.xl,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: "rgba(255, 255, 255, 0.05)",
-  },
-  dividerText: {
-    marginHorizontal: Spacing.xl,
-  },
+
   inputContainer: {
     backgroundColor: "rgba(255, 255, 255, 0.08)",
     borderRadius: BorderRadius.md,

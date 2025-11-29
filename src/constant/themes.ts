@@ -23,7 +23,7 @@ export const Colors = {
     background: '#000000',
     surface: '#1A1A1A',
     text: '#FFFFFF',
-    textSecondary: 'rgba(255, 255, 255, 0.6)',
+    textSecondary: '#FFFFFFCC;',
     textTertiary: 'rgba(255, 255, 255, 0.5)',
     border: 'rgba(255, 255, 255, 0.15)',
     primary: '#163955',

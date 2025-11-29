@@ -25,6 +25,7 @@ export default ({
                 fontSize,
                 color: color || "#000",
                 marginVertical, textAlign, padding,
+                
             }, style]}
         >
             {text} 

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef } from 'react';
 import {
   View,
   StyleSheet,
@@ -9,75 +9,75 @@ import {
   Platform,
   useColorScheme,
   TouchableOpacity,
-} from "react-native"
-import { useNavigation } from "@react-navigation/native"
-import type { NavigationProp } from "@react-navigation/native"
-import { Colors, Spacing, Typography, BorderRadius } from "../../constant"
-import AppText from "../../components/common/AppText"
-import AppButton from "../../components/common/AppButton"
-import MeshGradientBackground from "../../components/common/MeshGradientBackground"
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { NavigationProp } from '@react-navigation/native';
+import { Colors, Spacing, Typography, BorderRadius } from '../../constant';
+import AppText from '../../components/common/AppText';
+import AppButton from '../../components/common/AppButton';
+import MeshGradientBackground from '../../components/common/MeshGradientBackground';
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 // Design dimensions from Figma: 393px width x 852px height
-const DESIGN_WIDTH = 393
-const DESIGN_HEIGHT = 852
+const DESIGN_WIDTH = 393;
+const DESIGN_HEIGHT = 852;
 
 interface VerifyProps {
-  onVerifyComplete?: () => void
+  onVerifyComplete?: () => void;
 }
 
 export default function Verify({ onVerifyComplete }: VerifyProps) {
-  const navigation = useNavigation<NavigationProp<any>>()
-  const colorScheme = useColorScheme()
-  const colors = colorScheme === "dark" ? Colors.dark : Colors.light
-  const [code, setCode] = useState(["", "", "", ""])
-  const inputRefs = useRef<(TextInput | null)[]>([])
+  const navigation = useNavigation<NavigationProp<any>>();
+  const colorScheme = useColorScheme();
+  const colors = colorScheme === 'dark' ? Colors.dark : Colors.light;
+  const [code, setCode] = useState(['', '', '', '']);
+  const inputRefs = useRef<(TextInput | null)[]>([]);
 
   const handleCodeChange = (text: string, index: number) => {
     // Only allow single character (numbers or letters)
     if (text.length > 1) {
-      text = text.slice(-1).toUpperCase()
+      text = text.slice(-1).toUpperCase();
     } else {
-      text = text.toUpperCase()
+      text = text.toUpperCase();
     }
 
-    const newCode = [...code]
-    newCode[index] = text
-    setCode(newCode)
+    const newCode = [...code];
+    newCode[index] = text;
+    setCode(newCode);
 
     // Auto-focus next input
     if (text && index < 3) {
-      inputRefs.current[index + 1]?.focus()
+      inputRefs.current[index + 1]?.focus();
     }
 
     // Auto-verify when all 4 digits are entered
     if (text && index === 3) {
-      const fullCode = newCode.join("")
+      const fullCode = newCode.join('');
       if (fullCode.length === 4) {
         setTimeout(() => {
           // Handle verification logic
-          console.log("Verify code:", fullCode)
+          console.log('Verify code:', fullCode);
           // Navigate to CompleteProfile after verification
-          navigation.navigate("CompleteProfile")
+          navigation.navigate('CompleteProfile');
           if (onVerifyComplete) {
-            onVerifyComplete()
+            onVerifyComplete();
           }
-        }, 300)
+        }, 300);
       }
     }
-  }
+  };
 
   const handleKeyPress = (key: string, index: number) => {
-    if (key === "Backspace" && !code[index] && index > 0) {
-      inputRefs.current[index - 1]?.focus()
+    if (key === 'Backspace' && !code[index] && index > 0) {
+      inputRefs.current[index - 1]?.focus();
     }
-  }
+  };
 
   const handleResend = () => {
     // Handle resend code logic
-    console.log("Resend code")
-  }
+    console.log('Resend code');
+  };
 
   return (
     <View style={styles.container}>
@@ -85,7 +85,7 @@ export default function Verify({ onVerifyComplete }: VerifyProps) {
 
       <KeyboardAvoidingView
         style={styles.keyboardView}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         {/* Progress Bar */}
         <View style={styles.progressContainer}>
@@ -99,85 +99,89 @@ export default function Verify({ onVerifyComplete }: VerifyProps) {
           showsVerticalScrollIndicator={false}
         >
           {/* Title and Description */}
-          <View style={styles.titleContainer}>
+          <View>
+            <View style={styles.titleContainer}>
+              <AppText
+                text="Enter your code"
+                fontSize={Typography.fontSize.xxl}
+                fontName="CircularStd-Medium"
+                color={colors.white}
+                textAlign="center"
+                style={styles.title}
+              />
+              <AppText
+                text="Enter the 4 digits sent to your inbox."
+                fontSize={Typography.fontSize.md}
+                fontName="CircularStd-Book"
+                color={colors.textSecondary}
+                textAlign="center"
+                style={styles.subtitle}
+              />
+            </View>
+
+            {/* Code Input Fields */}
+            <View style={styles.codeContainer}>
+              {code.map((digit, index) => (
+                <View
+                  key={index}
+                  style={[
+                    styles.codeInputWrapper,
+                    digit && styles.codeInputFilled,
+                    index === code.findIndex(c => c === '') &&
+                      styles.codeInputActive,
+                  ]}
+                >
+                  <TextInput
+                    ref={ref => {
+                      inputRefs.current[index] = ref;
+                    }}
+                    style={styles.codeInput}
+                    value={digit}
+                    onChangeText={text => handleCodeChange(text, index)}
+                    onKeyPress={({ nativeEvent }) =>
+                      handleKeyPress(nativeEvent.key, index)
+                    }
+                    keyboardType="default"
+                    autoCapitalize="characters"
+                    maxLength={1}
+                    selectTextOnFocus
+                  />
+                </View>
+              ))}
+            </View>
+          </View>
+          {/* Resend Section */}
+          <View style={styles.resendContainer}>
             <AppText
-              text="Enter your code"
-              fontSize={Typography.fontSize.xxl}
-              fontName="CircularStd-Medium"
-              color={colors.text}
-              textAlign="center"
-              style={styles.title}
-            />
-            <AppText
-              text="Enter the 4 digits sent to your inbox."
+              text="Didn't recieve any e-mail?"
               fontSize={Typography.fontSize.md}
               fontName="CircularStd-Book"
               color={colors.textSecondary}
               textAlign="center"
-              style={styles.subtitle}
+              style={styles.resendText}
             />
-          </View>
-
-          {/* Code Input Fields */}
-          <View style={styles.codeContainer}>
-          {code.map((digit, index) => (
-            <View
-              key={index}
-              style={[
-                styles.codeInputWrapper,
-                digit && styles.codeInputFilled,
-                index === code.findIndex((c) => c === "") && styles.codeInputActive,
-              ]}
+            <TouchableOpacity
+              style={styles.resendButton}
+              onPress={handleResend}
+              activeOpacity={0.8}
             >
-              <TextInput
-                ref={(ref) => {
-                  inputRefs.current[index] = ref
-                }}
-                style={styles.codeInput}
-                value={digit}
-                onChangeText={(text) => handleCodeChange(text, index)}
-                onKeyPress={({ nativeEvent }) => handleKeyPress(nativeEvent.key, index)}
-                keyboardType="default"
-                autoCapitalize="characters"
-                maxLength={1}
-                selectTextOnFocus
+              <AppText
+                text="Resend code"
+                fontSize={Typography.fontSize.md}
+                fontName="CircularStd-Medium"
+                color={colors.white}
               />
-            </View>
-          ))}
-        </View>
-
-          {/* Resend Section */}
-          <View style={styles.resendContainer}>
-          <AppText
-            text="Didn't recieve any e-mail?"
-            fontSize={Typography.fontSize.md}
-            fontName="CircularStd-Book"
-            color={colors.textSecondary}
-            textAlign="center"
-            style={styles.resendText}
-          />
-          <TouchableOpacity
-            style={styles.resendButton}
-            onPress={handleResend}
-            activeOpacity={0.8}
-          >
-            <AppText
-              text="Resend code"
-              fontSize={Typography.fontSize.md}
-              fontName="CircularStd-Medium"
-              color={colors.text}
-            />
-          </TouchableOpacity>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: Colors.black,
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
@@ -186,7 +190,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   progressContainer: {
-    position: "absolute",
+    position: 'absolute',
     top: (60 / DESIGN_HEIGHT) * SCREEN_HEIGHT, // 7.04% from top
     left: (SCREEN_WIDTH - (196.5 / DESIGN_WIDTH) * SCREEN_WIDTH) / 2,
     width: (196.5 / DESIGN_WIDTH) * SCREEN_WIDTH,
@@ -194,99 +198,101 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   progressBackground: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     borderRadius: 30,
   },
   progressFill: {
-    position: "absolute",
+    position: 'absolute',
     left: 0,
-    width: `${(49 / 196.5) * 100}%`, // 49px out of 196.5px
-    height: "100%",
+    width: `${(49 / 196.5) * 100}%`,
+    height: '100%',
     backgroundColor: Colors.white,
     borderRadius: 30,
   },
   scrollView: {
-    flex: 1,
-    marginTop: (70 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
+    flexGrow: 1,
   },
   scrollContent: {
+    flex:1,
     paddingHorizontal: (32 / DESIGN_WIDTH) * SCREEN_WIDTH,
-    paddingBottom: (200 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
-    alignItems: "center",
+    marginTop:62,
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   titleContainer: {
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
-    alignItems: "center",
+    alignItems: 'center',
     gap: Spacing.xs,
-    marginBottom: Spacing.xxl,
+    marginBottom: 60,
+    marginTop: 32,
   },
   title: {
-    width: "100%",
+    width: '100%',
     letterSpacing: -0.48,
   },
   subtitle: {
-    width: "100%",
+    width: '100%',
   },
   codeContainer: {
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: Spacing.md,
-    justifyContent: "center",
+    justifyContent: 'center',
     marginBottom: Spacing.xxl,
   },
   codeInputWrapper: {
     aspectRatio: 1,
-    backgroundColor: "rgba(255, 255, 255, 0.08)",
+    backgroundColor: 'rgba(255, 255, 255, 0.08)',
     borderRadius: BorderRadius.md,
     paddingHorizontal: Spacing.lg,
     paddingVertical: Spacing.md,
     minWidth: (79.25 / DESIGN_WIDTH) * SCREEN_WIDTH,
     minHeight: (79.25 / DESIGN_WIDTH) * SCREEN_WIDTH,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   codeInputFilled: {
-    backgroundColor: "rgba(255, 255, 255, 0.15)",
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
     borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.3)",
+    borderColor: 'rgba(255, 255, 255, 0.3)',
   },
   codeInputActive: {
-    backgroundColor: "rgba(255, 255, 255, 0.15)",
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
     borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.3)",
+    borderColor: 'rgba(255, 255, 255, 0.3)',
   },
   codeInput: {
     fontSize: Typography.fontSize.xxl,
-    fontFamily: "Inter",
+    fontFamily: 'Inter',
     fontWeight: Typography.fontWeight.normal,
     color: Colors.white,
-    textAlign: "center",
-    width: "100%",
+    textAlign: 'center',
+    width: '100%',
     padding: 0,
   },
   resendContainer: {
+    marginTop: 'auto', // 🔥 pushes the button to bottom
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
-    alignItems: "center",
+    alignItems: 'center',
     gap: Spacing.xl,
-    marginTop: Spacing.xxl,
+    paddingBottom: 32,
   },
   resendText: {
-    width: "100%",
+    width: '100%',
   },
   resendButton: {
-    width: "100%",
+    width: '100%',
     height: 51,
     borderWidth: 1,
-    borderColor: "rgba(255, 255, 255, 0.5)",
+    borderColor: 'rgba(255, 255, 255, 0.5)',
     borderRadius: BorderRadius.full,
-    backgroundColor: "transparent",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: Spacing.xxl,
     paddingVertical: Spacing.lg,
   },
-})
-
+});

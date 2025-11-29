@@ -45,10 +45,10 @@
 // }
 
 import React from "react"
-import TabNavigator from "./src/navigation/TabNavigator"
+import RootNavigator from "./src/navigation"
 
 const App = () => {
-  return <TabNavigator />
+  return <RootNavigator />
 }
 
 export default App

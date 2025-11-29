@@ -1,31 +1,57 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Intro from "../screens/Intro/Intro";
-import Login from "../screens/AuthScreens/Login";
-import SignUp from "../screens/AuthScreens/Signup";
-import Register from "../screens/AuthScreens/Register";
-import Verify from "../screens/AuthScreens/Verify";
-import CompleteProfile from "../screens/AuthScreens/CompleteProfile";
-import Welcome from "../screens/AuthScreens/Welcome";
 
-const Stack = createNativeStackNavigator();
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Home from '../screens/Home';
+import Menu from '../screens/Menu';
+import MedicalPaper from '../screens/MedicalPaper';
+import BottomTabs from '../components/common/BottomTabs';
+
+const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Intro"
-        screenOptions={{ headerShown: false }}
-      >
-        <Stack.Screen name="Intro" component={Intro} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Verify" component={Verify} />
-        <Stack.Screen name="CompleteProfile" component={CompleteProfile} />
-        <Stack.Screen name="Welcome" component={Welcome} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      screenOptions={{ headerShown: false }}
+      tabBar={({ state, navigation }) => {
+        const tabs = state.routes.map(route => {
+          let icon;
+          if (route.name === 'Home') {
+            icon = require('../../assets/images/home-icon.png');
+          } else if (route.name === 'Discover') {
+            icon = require('../../assets/images/explore-icon.png');
+          } else if (route.name === 'My Profile') {
+            icon = require('../../assets/images/user-avatar-icon.png');
+          }
+          return {
+            id: route.name,
+            label: route.name,
+            icon: icon,
+          };
+        });
+
+        const activeTab = state.routes[state.index].name;
+
+        const onTabPress = (tabId: string) => {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: tabId,
+            canPreventDefault: true,
+          });
+
+          if (!event.defaultPrevented) {
+            navigation.navigate(tabId);
+          }
+        };
+
+        return (
+          <BottomTabs tabs={tabs} activeTab={activeTab} onTabPress={onTabPress} />
+        );
+      }}
+    >
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Discover" component={Menu} />
+      <Tab.Screen name="My Profile" component={MedicalPaper} />
+    </Tab.Navigator>
   );
 };
 
