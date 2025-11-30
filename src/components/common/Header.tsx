@@ -4,9 +4,11 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Pressable,
 } from 'react-native';
 import { Colors } from '../../constant';
 import AppText from './AppText';
+import { useNavigation } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const DESIGN_WIDTH = 393;
@@ -16,6 +18,7 @@ interface HeaderProps {
   onNotificationPress?: () => void;
   onMenuPress?: () => void;
   showNotificationDot?: boolean;
+  isBack?:boolean
 }
 
 export default function Header({
@@ -23,9 +26,18 @@ export default function Header({
   onNotificationPress,
   onMenuPress,
   showNotificationDot = true,
+  isBack = false
 }: HeaderProps) {
+  const navigation = useNavigation()
   return (
     <View style={styles.container}>
+
+    <View style={{flexDirection:'row', gap:12, alignItems:'center'}}>
+        {isBack && 
+      <Pressable style={{backgroundColor:'#141414', padding:8, borderRadius:10}} onPress={() => navigation.goBack()}>
+        <Image source={require('../../../assets/images/back-arrow-icon.png')} resizeMode='contain' style={{width:16, height:16}} />
+      </Pressable>
+      }
       <AppText
         text={title}
         fontSize={18}
@@ -33,6 +45,7 @@ export default function Header({
         fontName="CircularStd-Medium"
         color={Colors.white}
       />
+    </View>
 
       <View style={styles.rightSection}>
         {/* Notification Bell */}
@@ -54,7 +67,7 @@ export default function Header({
         </TouchableOpacity>
 
         {/* Hamburger Menu */}
-        <TouchableOpacity style={styles.iconButton} onPress={onMenuPress}>
+        <TouchableOpacity style={styles.iconButton} onPress={() => navigation.navigate('Menu')}>
           <View style={styles.hamburgerIcon}>
             <Image
               source={require('../../../assets/images/menu-line-icon.png')}
