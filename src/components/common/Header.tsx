@@ -22,7 +22,7 @@ interface HeaderProps {
 }
 
 export default function Header({
-  title = 'Home',
+  title,
   onNotificationPress,
   onMenuPress,
   showNotificationDot = true,
