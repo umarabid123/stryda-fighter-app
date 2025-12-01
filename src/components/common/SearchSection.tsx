@@ -4,39 +4,57 @@ import AppText from "./AppText";
 import CustomIconButton from "./CustomIconButton";
 import { Colors, wp } from "../../constant";
 
-export default function SearchSection() {
+export default function SearchSection({
+  title = "Discover",
+  subtitle = "Browse fighters and events worldwide.",
+  placeholder = "Search",
+  searchValue = "",
+  onSearchChange = () => {},
+  onFilterPress = () => {},
+  searchIcon = require("../../../assets/images/search-icon.png"),
+  filterIcon = require("../../../assets/images/search-filter-icon.png"),
+  containerStyle = {},
+  titleStyle = {},
+  subtitleStyle = {},
+  searchBarStyle = {},
+  filterButtonStyle = {},
+}) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <AppText
-        text="Discover"
+        text={title}
         fontSize={32}
-        style={styles.title}
         color={Colors.white}
+        style={[styles.title, titleStyle]}
       />
 
       <AppText
-        text="Browser fighters and events world wide."
+        text={subtitle}
         color={Colors.textSecondary}
+        style={subtitleStyle}
       />
 
       <View style={styles.searchRow}>
-        <View style={styles.searchBar}>
+        <View style={[styles.searchBar, searchBarStyle]}>
           <Image
-            source={require("../../../assets/images/search-icon.png")}
+            source={searchIcon}
             resizeMode="contain"
             style={styles.searchIcon}
           />
 
           <TextInput
-            placeholder="Search"
+            value={searchValue}
+            onChangeText={onSearchChange}
+            placeholder={placeholder}
             placeholderTextColor="#00000099"
             style={styles.searchInput}
           />
         </View>
 
         <CustomIconButton
-          source={require("../../../assets/images/search-filter-icon.png")}
-          btnStyle={styles.filterBtn}
+          source={filterIcon}
+          onPress={onFilterPress}
+          btnStyle={[styles.filterBtn, filterButtonStyle]}
           textStyle={{ display: "none" }}
           iconStyle={styles.filterIcon}
         />
@@ -73,18 +91,18 @@ const styles = StyleSheet.create({
     height: 20,
   },
   searchInput: {
-    backgroundColor: "transparent",
+    flex: 1,
     marginLeft: 6,
+    backgroundColor: "transparent",
     borderWidth: 0,
-    flex:1,
     color: "#000",
   },
   filterBtn: {
     backgroundColor: "#FFFFFF26",
     paddingVertical: 14,
     paddingHorizontal: 14,
-    width: "auto",
-    margin: 0,
+    width:52,
+    height:52
   },
   filterIcon: {
     width: 24,

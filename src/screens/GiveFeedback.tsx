@@ -9,8 +9,10 @@ import {
 import AppButton from '../components/common/AppButton';
 import AppText from '../components/common/AppText';
 import Header from '../components/common/Header';
-import SearchSection from '../components/common/SearchSection';
 import { Colors } from '../constant';
+import SearchSection from '../components/common/SearchSection';
+import FighterCard from '../components/FighterCard';
+import CarouselItem from '../components/CarouselItem';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const GiveFeedback = ({
@@ -49,8 +51,9 @@ const GiveFeedback = ({
           textStyle={{ color: Colors.black, fontWeight: 600 }}
         />
       </View>
-      <SearchSection />
-      
+      {/* <SearchSection />
+      <FighterCard /> */}
+      {/* <CarouselItem /> */}
     </View>
   );
 };

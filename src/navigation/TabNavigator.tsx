@@ -6,6 +6,7 @@ import Menu from '../screens/Menu';
 import MedicalPaper from '../screens/MedicalPaper';
 import BottomTabs from '../components/common/BottomTabs';
 import HomeNavigator from './HomeNavigator';
+import DiscoverNavigator from './DicoverNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,7 +51,7 @@ const TabNavigator = () => {
       }}
     >
       <Tab.Screen name="Home" component={HomeNavigator} />
-      <Tab.Screen name="Discover" component={Menu} />
+      <Tab.Screen name="Discover" component={DiscoverNavigator} />
       <Tab.Screen name="My Profile" component={MedicalPaper} />
     </Tab.Navigator>
   );

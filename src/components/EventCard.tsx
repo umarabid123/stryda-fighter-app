@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Image, StyleSheet, ViewStyle, ImageSourcePropType } from "react-native";
 import AppText from "./common/AppText";
-import { Colors } from "../constant";
+import { Colors, wp } from "../constant";
 
 interface EventCardProps {
   image: ImageSourcePropType;
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 16,
+    width:"auto"
   },
   image: {
     width: 80,
