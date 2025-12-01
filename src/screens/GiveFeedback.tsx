@@ -1,23 +1,61 @@
-
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { Colors } from '../constant';
+import {
+  Dimensions,
+  StyleSheet,
+  TextInput,
+  TextStyle,
+  View
+} from 'react-native';
+import AppButton from '../components/common/AppButton';
+import AppText from '../components/common/AppText';
 import Header from '../components/common/Header';
+import SearchSection from '../components/common/SearchSection';
+import { Colors } from '../constant';
 
-
-
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
-const GiveFeedback = () => {
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+const GiveFeedback = ({
+  height = 287,
+  inputStyle,
+}: {
+  height?: number;
+  inputStyle?: TextStyle;
+}) => {
   return (
     <View style={styles.container}>
-      <Header title='Give Feedback' isBack />
+      <Header title="Give Feedback" isBack />
+      <View style={styles.content}>
+        <AppText
+          text="Give us your feedback!"
+          color={Colors.white}
+          fontSize={14}
+          style={{ fontWeight: 500 }}
+        />
+        <TextInput
+          multiline
+          placeholder="Write here..."
+          placeholderTextColor={'#FFFFFF80'}
+          style={[styles.textarea, { height: height }, inputStyle]}
+        />
+        <AppButton
+          text="Send feedback"
+          btnStyle={{
+            width: 'auto',
+            paddingHorizontal: 32,
+            paddingVertical: 17,
+            backgroundColor: Colors.white,
+            borderRadius: 50,
+            marginTop: 32,
+          }}
+          textStyle={{ color: Colors.black, fontWeight: 600 }}
+        />
+      </View>
+      <SearchSection />
+      
     </View>
   );
 };
 
 export default GiveFeedback;
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -26,6 +64,17 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
     paddingTop: 40,
-    
+  },
+  content: {
+    paddingHorizontal: 20,
+  },
+  textarea: {
+    borderRadius: 12,
+    padding: 14,
+    color: Colors.white,
+    fontSize: 15,
+    lineHeight: 22,
+    borderBottomWidth: 1,
+    borderBottomColor: '#FFFFFF26',
   },
 });

@@ -51,4 +51,5 @@ export const Colors = {
   orange: '#FFA500',
   blue700: '#0C1E2C',
   yellow: '#FFC107',
+  textSecondary: '#FFFFFFCC',
 } as const 
