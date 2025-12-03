@@ -1,14 +1,13 @@
 
-import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
 import TabNavigator from './TabNavigator';
-import Menu from '../screens/Menu';
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Main">
       <Stack.Screen name="Main" component={TabNavigator} />
     </Stack.Navigator>
   );

@@ -20,7 +20,7 @@ export const useAuth = () => {
 };
 
 const RootNavigator = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Start with false (show auth)
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>

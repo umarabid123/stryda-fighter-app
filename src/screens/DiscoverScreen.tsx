@@ -14,6 +14,7 @@ import AppText from '../components/common/AppText';
 import EventCard from '../components/EventCard';
 import FighterCard from '../components/FighterCard';
 import AppButton from '../components/common/AppButton';
+import { useNavigation } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -81,7 +82,7 @@ export default function DiscoverScreen() {
       weightClass: "75 kg",
     },
   ];
-
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Header />
@@ -107,7 +108,7 @@ export default function DiscoverScreen() {
           />
         </View>
 
-        <View style={{ paddingHorizontal: 20, paddingTop: 30, paddingBottom:40 }}>
+        <View style={{ paddingHorizontal: 20, paddingTop: 30, paddingBottom: 40 }}>
           <AppText
             text="Events soon 👀"
             fontSize={16}
@@ -118,8 +119,8 @@ export default function DiscoverScreen() {
           <FlatList
             data={events}
             keyExtractor={item => item.id}
-            scrollEnabled={false} 
-            contentContainerStyle={{paddingTop: 16 }}
+            scrollEnabled={false}
+            contentContainerStyle={{ paddingTop: 16 }}
             ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
             renderItem={({ item }) => (
               <EventCard
@@ -131,7 +132,7 @@ export default function DiscoverScreen() {
               />
             )}
           />
-          <AppButton text='Browse events' btnStyle={{backgroundColor:'transparant', borderWidth:1, borderColor:"#FFFFFF80", borderRadius:50, width:"auto", paddingHorizontal:32, paddingVertical:17}} />
+          <AppButton text='Browse events' btnStyle={{ backgroundColor: 'transparant', borderWidth: 1, borderColor: "#FFFFFF80", borderRadius: 50, width: "auto", paddingHorizontal: 32, paddingVertical: 17 }} onPress={() => navigation.navigate('EventDetail')} />
         </View>
 
         <View style={{ paddingHorizontal: 20 }}>
@@ -162,7 +163,8 @@ export default function DiscoverScreen() {
               />
             )}
           />
-            <AppButton text='Browse fighters' btnStyle={{backgroundColor:'transparant', borderWidth:1, borderColor:"#FFFFFF80", borderRadius:50, width:"auto", paddingHorizontal:32, paddingVertical:17}} />
+          <AppButton text='Browse fighters' btnStyle={{ backgroundColor: 'transparant', borderWidth: 1, borderColor: "#FFFFFF80", borderRadius: 50, width: "auto", paddingHorizontal: 32, paddingVertical: 17 }}
+            onPress={() => navigation.navigate('FighterScreen')} />
         </View>
       </ScrollView>
     </View>
