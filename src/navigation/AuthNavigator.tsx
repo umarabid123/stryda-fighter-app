@@ -5,6 +5,10 @@ import SignUp from '../screens/AuthScreens/Signup';
 import Register from '../screens/AuthScreens/Register';
 import Verify from '../screens/AuthScreens/Verify';
 import CompleteProfile from '../screens/AuthScreens/CompleteProfile';
+import OnboardingRoles from '../screens/AuthScreens/OnboardingRoles';
+import OnboardingFan from '../screens/AuthScreens/OnboardingFan';
+import OnboardingFighter from '../screens/AuthScreens/OnboardingFighter';
+import OnboardingOrganizer from '../screens/AuthScreens/OnboardingOrganizer';
 import Welcome from '../screens/AuthScreens/Welcome';
 import Menu from '../screens/Menu';
 
@@ -22,6 +26,10 @@ const AuthNavigator = () => {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Verify" component={Verify} />
       <Stack.Screen name="CompleteProfile" component={CompleteProfile} />
+      <Stack.Screen name="OnboardingRoles" component={OnboardingRoles} />
+      <Stack.Screen name="OnboardingFan" component={OnboardingFan} />
+      <Stack.Screen name="OnboardingFighter" component={OnboardingFighter} />
+      <Stack.Screen name="OnboardingOrganizer" component={OnboardingOrganizer} />
       <Stack.Screen name="Welcome" component={Welcome} />
     </Stack.Navigator>
   );

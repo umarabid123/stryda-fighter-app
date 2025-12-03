@@ -24,6 +24,8 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const DESIGN_WIDTH = 393;
 const DESIGN_HEIGHT = 852;
 
+const TOTAL_STEPS = 2;
+
 interface CompleteProfileProps {
   onComplete?: () => void;
 }
@@ -33,6 +35,8 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
   const colorScheme = useColorScheme();
   const colors = colorScheme === 'dark' ? Colors.dark : Colors.light;
 
+  const [currentStep, setCurrentStep] = useState(1);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
   const [firstName, setFirstName] = useState('Jonathan');
   const [lastName, setLastName] = useState('Haggerty');
   const [dateOfBirth, setDateOfBirth] = useState('Mar 03, 2000');
@@ -42,6 +46,9 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
     { platform: 'Instagram', url: 'https://www.instagram.com/laugepetersen' },
   ]);
 
+  // Calculate progress: Step 1 = 25%, Step 2 = 50%
+  const progressPercentage = currentStep === 1 ? 25 : 50;
+
   const handleAddSocialLink = () => {
     setSocialLinks([...socialLinks, { platform: '', url: '' }]);
   };
@@ -50,9 +57,19 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
     setSocialLinks(socialLinks.filter((_, i) => i !== index));
   };
 
+  const handleProfileImagePress = () => {
+    // TODO: Open image picker
+    console.log('Select profile image');
+  };
+
   const handleNext = () => {
-    // Handle complete profile logic
+    if (currentStep < TOTAL_STEPS) {
+      // Advance to next step
+      setCurrentStep(currentStep + 1);
+    } else {
+      // Complete profile and navigate
     console.log('Complete profile:', {
+        profileImage,
       firstName,
       lastName,
       dateOfBirth,
@@ -60,31 +77,30 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
       country,
       socialLinks,
     });
-    // if (onComplete) {
-    //   onComplete()
-    // }
-    navigation.navigate('Welcome');
-    // navigation?.navigate("Home")
+      if (onComplete) {
+        onComplete();
+      }
+      navigation.navigate('Welcome');
+    }
   };
 
-  return (
-    <View style={styles.container}>
-      <MeshGradientBackground />
+  const handleLetsDoIt = () => {
+    // Navigate to OnboardingRoles screen
+    navigation.navigate('OnboardingRoles');
+  };
 
-      <KeyboardAvoidingView
-        style={styles.keyboardView}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        {/* Progress Bar */}
-        <View style={styles.progressContainer}>
-          <View style={styles.progressBackground} />
-          <View style={styles.progressFill} />
-        </View>
-        <ScrollView
-          style={styles.scrollView}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
+  const handleDoItLater = () => {
+    // Skip and navigate
+    if (onComplete) {
+      onComplete();
+    }
+    navigation.navigate('Welcome');
+  };
+
+  const renderStepContent = () => {
+    if (currentStep === 1) {
+      return (
+        <>
           {/* Title and Description */}
           <View style={styles.titleContainer}>
             <AppText
@@ -106,37 +122,63 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
           </View>
 
           {/* Profile Picture */}
+          <View style={styles.profilePictureContainer}>
+            <View style={styles.profilePictureWrapper}>
+              <View style={styles.profilePicture}>
+                {profileImage ? (
+                  <Image source={{ uri: profileImage }} style={styles.profileImage} />
+                ) : (
+                  <View style={styles.profilePlaceholder}>
+                    <Image source={require('../../../assets/images/profile.png')} resizeMode="contain" style={styles.profileImage} />
+                  </View>
+                )}
+              </View>
+              <TouchableOpacity
+                style={styles.addPhotoButton}
+                onPress={handleProfileImagePress}
+              >
+                <AppText
+                  text="+"
+                  fontSize={Typography.fontSize.lg}
+                  fontName="CircularStd-Medium"
+                  color={Colors.black}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
 
           {/* Form Fields */}
           <View style={styles.formContainer}>
             <ProfileInput
               label="First Name *"
+              value={firstName}
               onChangeText={setFirstName}
-              placeholder={firstName}
+              placeholder="Jonathan"
             />
             <ProfileInput
               label="Last Name *"
-              placeholder={lastName}
+              value={lastName}
               onChangeText={setLastName}
+              placeholder="Haggerty"
             />
             <ProfileInput
               label="Date of birth *"
-              placeholder={dateOfBirth}
-              onChangeText={setDateOfBirth}
+              value={dateOfBirth}
+              placeholder="Mar 03, 2000"
               editable={false}
               onPress={() => console.log('Open date picker')}
             />
             <ProfileInput
               label="Gender *"
-              placeholder={gender}
-              onChangeText={setGender}
+              value={gender}
+              placeholder="-"
               editable={false}
               onPress={() => console.log('Open gender picker')}
             />
             <ProfileInput
               label="Country *"
-              placeholder={country}
-              onChangeText={setCountry}
+              value={country}
+              placeholder="England"
               editable={false}
               onPress={() => console.log('Open country picker')}
             />
@@ -154,6 +196,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
                 <AppText
                   text="+"
                   fontSize={Typography.fontSize.xxl}
+                  fontName="CircularStd-Medium"
                   color={Colors.black}
                 />
               </TouchableOpacity>
@@ -202,6 +245,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
                     <AppText
                       text="×"
                       fontSize={Typography.fontSize.xxl}
+                      fontName="CircularStd-Medium"
                       color={colors.white}
                     />
                   </TouchableOpacity>
@@ -215,6 +259,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
                 <AppText
                   text="+"
                   fontSize={Typography.fontSize.xxl}
+                  fontName="CircularStd-Medium"
                   color={Colors.black}
                 />
               </TouchableOpacity>
@@ -227,9 +272,112 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
               textStyle={styles.nextButtonText}
             />
           </View>
-        </ScrollView>
+        </>
+      );
+    } else {
+      // Step 2: "Great! Let's setup your profile" screen
+      return (
+        <View style={styles.step2Container}>
+          {/* Title */}
+          <View style={styles.step2TitleContainer}>
+            <View style={styles.step2TitleRow}>
+              <AppText
+                text="Great! Let's setup your profile to benefit from "
+                fontSize={Typography.fontSize.xxl}
+                fontName="CircularStd-Medium"
+                color={colors.white}
+                textAlign="center"
+                style={styles.step2Title}
+              />
+              <AppText
+                text="STRYDA"
+                fontSize={Typography.fontSize.xxl}
+                fontName="CircularStd-Bold"
+                color={colors.white}
+                textAlign="center"
+                style={[styles.step2Title, styles.strydaBold]}
+              />
+              <AppText
+                text="."
+                fontSize={Typography.fontSize.xxl}
+                fontName="CircularStd-Medium"
+                color={colors.white}
+                textAlign="center"
+                style={styles.step2Title}
+              />
+            </View>
+          </View>
 
-        {/* Next Button */}
+          {/* Illustration Container */}
+          <View style={styles.illustrationWrapper}>
+            {/* Background ST Logo */}
+            <Image
+              source={require('../../../assets/images/st-logo.png')}
+              style={styles.stLogoBackground}
+              resizeMode="contain"
+            />
+            
+            {/* Ryu Character */}
+            <Image
+              source={require('../../../assets/images/ryu-character.png')}
+              style={styles.ryuCharacter}
+              resizeMode="contain"
+            />
+          </View>
+
+          {/* Action Buttons */}
+          <View style={styles.step2ButtonsContainer}>
+            <AppButton
+              text="Yes! Let's do it"
+              onPress={handleLetsDoIt}
+              btnStyle={styles.yesButton}
+              textStyle={styles.yesButtonText}
+            />
+            <TouchableOpacity onPress={handleDoItLater} style={styles.laterButton}>
+              <AppText
+                text="I'll do it later"
+                fontSize={Typography.fontSize.lg}
+                fontName="CircularStd-Medium"
+                color={colors.white}
+                textAlign="center"
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      );
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <MeshGradientBackground />
+
+      <KeyboardAvoidingView
+        style={styles.keyboardView}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        {/* Progress Bar */}
+        <View style={[
+          styles.progressContainer,
+          { top: currentStep === 1 ? (43 / DESIGN_HEIGHT) * SCREEN_HEIGHT : (60 / DESIGN_HEIGHT) * SCREEN_HEIGHT }
+        ]}>
+          <View style={styles.progressBackground} />
+          <View style={[styles.progressFill, { width: `${progressPercentage}%` }]} />
+        </View>
+
+        {currentStep === 1 ? (
+          <ScrollView
+            style={styles.scrollView}
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+          >
+            {renderStepContent()}
+          </ScrollView>
+        ) : (
+          <View style={styles.step2Wrapper}>
+            {renderStepContent()}
+          </View>
+        )}
       </KeyboardAvoidingView>
     </View>
   );
@@ -247,7 +395,6 @@ const styles = StyleSheet.create({
   },
   progressContainer: {
     position: 'absolute',
-    top: (43 / DESIGN_HEIGHT) * SCREEN_HEIGHT, // 5.02% from top
     left: (SCREEN_WIDTH - (196.5 / DESIGN_WIDTH) * SCREEN_WIDTH) / 2,
     width: (196.5 / DESIGN_WIDTH) * SCREEN_WIDTH,
     height: 4,
@@ -264,7 +411,6 @@ const styles = StyleSheet.create({
   progressFill: {
     position: 'absolute',
     left: 0,
-    width: `${(98 / 196.5) * 100}%`, // 98px out of 196.5px (50%)
     height: '100%',
     backgroundColor: Colors.white,
     borderRadius: 30,
@@ -298,31 +444,42 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.xxl,
     marginTop: Spacing.xl,
   },
+  profilePictureWrapper: {
+    position: 'relative',
+    width: 120,
+    height: 120,
+  },
   profilePicture: {
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: Colors.lightGrey,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative',
+    overflow: 'hidden',
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 60,
   },
   profilePlaceholder: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    width: 120,
+    height: 120,
+    borderRadius: 60,
   },
   addPhotoButton: {
     position: 'absolute',
-    bottom: 0,
-    right: SCREEN_WIDTH / 2 - 136 - 32 + 120 - 16, // Positioned at bottom right of profile picture
+    top: 0,
+    right: 0,
     width: 32,
     height: 32,
     borderRadius: 16,
     backgroundColor: Colors.white,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
   },
   formContainer: {
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
@@ -369,7 +526,7 @@ const styles = StyleSheet.create({
   addButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
+    borderRadius: BorderRadius.full,
     backgroundColor: Colors.white,
     justifyContent: 'center',
     alignItems: 'center',
@@ -391,5 +548,86 @@ const styles = StyleSheet.create({
     fontSize: Typography.fontSize.lg,
     fontWeight: Typography.fontWeight.semibold,
     color: Colors.black,
+  },
+  // Step 2 Styles
+  step2Wrapper: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingTop: (96 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
+  },
+  step2Container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: (32 / DESIGN_WIDTH) * SCREEN_WIDTH,
+    paddingTop: 0,
+    paddingBottom: (75 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
+  },
+  step2TitleContainer: {
+    width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
+    alignItems: 'center',
+    marginBottom: Spacing.lg,
+  },
+  step2TitleRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  step2Title: {
+    letterSpacing: -0.48,
+    lineHeight: Typography.lineHeight.xxl,
+  },
+  strydaBold: {
+    fontWeight: Typography.fontWeight.bold,
+    fontStyle: 'italic',
+  },
+  illustrationWrapper: {
+    width: SCREEN_WIDTH,
+    height: (340 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
+    position: 'relative',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: Spacing.xl,
+  },
+  stLogoBackground: {
+    position: 'absolute',
+    left: (85 / DESIGN_WIDTH) * SCREEN_WIDTH,
+    top: '50%',
+    marginTop: -((305 / DESIGN_HEIGHT) * SCREEN_HEIGHT / 2) + ((40 / DESIGN_HEIGHT) * SCREEN_HEIGHT),
+    width: (221 / DESIGN_WIDTH) * SCREEN_WIDTH,
+    height: (305 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
+    opacity: 0.3,
+  },
+  ryuCharacter: {
+    width: (176 / DESIGN_WIDTH) * SCREEN_WIDTH,
+    height: (340 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
+    alignSelf: 'center',
+  },
+  step2ButtonsContainer: {
+    width: '100%',
+    alignItems: 'center',
+    gap: Spacing.lg,
+  },
+  yesButton: {
+    minWidth: 120,
+    backgroundColor: Colors.white,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: BorderRadius.full,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: Spacing.xxxl,
+    paddingVertical: Spacing.lg,
+    height: 51,
+  },
+  yesButtonText: {
+    fontSize: Typography.fontSize.lg,
+    fontWeight: Typography.fontWeight.semibold,
+    color: Colors.black,
+  },
+  laterButton: {
+    paddingVertical: Spacing.sm,
   },
 });

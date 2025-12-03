@@ -6,14 +6,9 @@ import {
   Text,
   TextStyle,
   TouchableOpacity,
-  View,
-  ViewStyle,
+
 } from 'react-native';
-import { wp } from '../../constant/constants';
 import { Colors } from '../../constant/themes';
-
-const button = wp(90);
-
 export default function AppButton({
   text,
   route,
@@ -56,7 +51,7 @@ export default function AppButton({
 const styles = StyleSheet.create({
   button: {
     backgroundColor: Colors.primary,
-    width: button,
+    width: 'auto',
     alignSelf: 'center', // ✅ Use alignSelf instead of margin: 'auto'
     paddingVertical: 12,
     borderRadius: 10,
@@ -66,6 +61,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontWeight: '500', // ✅ fontWeight should be a string, not a number
-    lineHeight: 24,
+    // lineHeight: 24,
   },
 });
