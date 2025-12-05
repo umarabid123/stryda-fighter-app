@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Dimensions,
+  StatusBar,
   StyleSheet,
   TextInput,
   TextStyle,
@@ -51,9 +52,6 @@ const GiveFeedback = ({
           textStyle={{ color: Colors.black, fontWeight: 600 }}
         />
       </View>
-      {/* <SearchSection />
-      <FighterCard /> */}
-      {/* <CarouselItem /> */}
     </View>
   );
 };
@@ -66,14 +64,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    paddingTop: 40,
+    paddingTop: 60,
   },
   content: {
     paddingHorizontal: 20,
+    marginTop: 30
   },
   textarea: {
     borderRadius: 12,
-    padding: 14,
     color: Colors.white,
     fontSize: 15,
     lineHeight: 22,
