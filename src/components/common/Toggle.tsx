@@ -27,7 +27,7 @@ export default function Toggle({
 }: ToggleProps) {
   const colorScheme = useColorScheme();
   const colors = colorScheme === 'dark' ? Colors.dark : Colors.light;
-  
+
   const thumbPosition = useRef(new Animated.Value(value ? 1 : 0)).current;
 
   useEffect(() => {
@@ -40,12 +40,12 @@ export default function Toggle({
 
   const thumbLeft = thumbPosition.interpolate({
     inputRange: [0, 1],
-    outputRange: [4, 44], // 4px when off, 44px when on (80px width - 32px thumb - 4px margin)
+    outputRange: [4, 44],
   });
 
   const thumbColor = thumbPosition.interpolate({
     inputRange: [0, 1],
-    outputRange: [Colors.white, Colors.black], // White when off, black when on
+    outputRange: [Colors.white, Colors.black],
   });
 
   return (
@@ -97,7 +97,8 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.md,
   },
   content: {
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
     gap: Spacing.md,
   },

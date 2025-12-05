@@ -7,6 +7,7 @@ import MedicalPaper from '../screens/MedicalPaper';
 import BottomTabs from '../components/common/BottomTabs';
 import HomeNavigator from './HomeNavigator';
 import DiscoverNavigator from './DicoverNavigator';
+import FighterProfileScreen from '../screens/FighterProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,8 +22,8 @@ const TabNavigator = () => {
             icon = require('../../assets/images/home-icon.png');
           } else if (route.name === 'Discover') {
             icon = require('../../assets/images/explore-icon.png');
-          } else if (route.name === 'My Profile') {
-            icon = require('../../assets/images/user-avatar-icon.png');
+          } else{
+            icon = require('../../assets/images/profile-image-icon.png');
           }
           return {
             id: route.name,
@@ -52,7 +53,7 @@ const TabNavigator = () => {
     >
       <Tab.Screen name="Home" component={HomeNavigator} />
       <Tab.Screen name="Discover" component={DiscoverNavigator} />
-      <Tab.Screen name="My Profile" component={MedicalPaper} />
+      <Tab.Screen name="Account" component={FighterProfileScreen} />
     </Tab.Navigator>
   );
 };
