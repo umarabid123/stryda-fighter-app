@@ -132,7 +132,7 @@ export default function DiscoverScreen() {
               />
             )}
           />
-          <AppButton text='Browse events' btnStyle={{ backgroundColor: 'transparant', borderWidth: 1, borderColor: "#FFFFFF80", borderRadius: 50, width: "auto", paddingHorizontal: 32, paddingVertical: 17 }} onPress={() => navigation.navigate('EventDetail')} />
+          <AppButton text='Browse events' btnStyle={{ backgroundColor: 'transparant', borderWidth: 1, borderColor: "#FFFFFF80", borderRadius: 50, width: "auto", paddingHorizontal: 32, paddingVertical: 17 }} onPress={() => navigation.navigate('Event')} />
         </View>
 
         <View style={{ paddingHorizontal: 20 }}>
@@ -148,8 +148,7 @@ export default function DiscoverScreen() {
             showsVerticalScrollIndicator={false}
             keyExtractor={item => item.id}
             contentContainerStyle={{
-              paddingTop: 20,
-              paddingHorizontal: 20,
+              paddingTop: 20
             }}
             ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
             renderItem={({ item }) => (

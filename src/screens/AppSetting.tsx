@@ -20,14 +20,20 @@ export default function AppSetting() {
         <Toggle
           label="Allow notifications?"
           subtitle="Get updated with your fighters and events."
+          labelStyle={{ fontWeight: 500 }}
+          subtitleStyle={{ fontWeight: 300 }}
           value={notificationsEnabled}
           onToggle={setNotificationsEnabled}
+          layout="column"
         />
         <Toggle
           label="Allow location?"
           subtitle="See relevant events near you"
+          labelStyle={{ fontWeight: 500 }}
+          subtitleStyle={{ fontWeight: 300 }}
           value={locationEnabled}
           onToggle={setLocationEnabled}
+          layout="column"
         />
       </View>
     </View>
@@ -45,7 +51,7 @@ const styles = StyleSheet.create({
   optionsContainer: {
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
     alignSelf: 'center',
-    marginTop: 0,
+    marginTop: 8,
     gap: Spacing.xxl,
   },
 });

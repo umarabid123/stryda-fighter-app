@@ -10,7 +10,7 @@ const MedicalPaper = () => {
   return (
     <View style={styles.container}>
       <Header title="Medical Papers" isBack={true} />
-      <AppText text='TODO Medical Papers' fontSize={44} color={Colors.white} style={{ fontWeight: '600', textAlign: 'center', marginTop: 155 }} />
+      <AppText text={'TODO\nMedical Papers'} fontSize={44} color={Colors.white} style={{ fontWeight: '600', textAlign: 'center', marginTop: 155 }} />
     </View>
   );
 };
