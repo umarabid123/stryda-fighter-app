@@ -70,64 +70,64 @@ export default function Login({ onSignUpPress }: LoginProps) {
               text="Unlock the benefits of a digital hub."
               fontSize={Typography.fontSize.md}
               fontName="CircularStd-Book"
-              color={colors.textSecondary}
+              color={Colors.textSecondary}
               textAlign="center"
               style={styles.subtitle}
             />
           </View>
 
           {/* Content Container */}
-          <View style={styles.contentContainer}>
-          {/* Social Login Buttons */}
-          <View style={styles.socialButtonsContainer}>
-            <CustomIconButton
-              text="Continue with Google"
-              source={require("../../../assets/images/google-icon.png")}
-              btnStyle={styles.socialButton}
-              textStyle={styles.socialButtonText}
-              iconStyle={styles.socialIcon}
-              onPress={() => console.log("Google login")}
-            />
-            <CustomIconButton
-              text="Continue with Apple"
-              source={require("../../../assets/images/apple-icon.png")}
-              btnStyle={styles.socialButton}
-              textStyle={styles.socialButtonText}
-              iconStyle={styles.socialIcon}
-              onPress={() => console.log("Apple login")}
-            />
-            <CustomIconButton
-              text="Continue with Facebook"
-              source={require("../../../assets/images/facebook-icon.png")}
-              btnStyle={styles.socialButton}
-              textStyle={styles.socialButtonText}
-              iconStyle={styles.socialIcon}
-              onPress={() => console.log("Facebook login")}
-            />
-          </View>
+          <View>
+            {/* Social Login Buttons */}
+            <View style={styles.socialButtonsContainer}>
+              <CustomIconButton
+                text="Continue with Google"
+                source={require("../../../assets/images/google-icon.png")}
+                btnStyle={styles.socialButton}
+                textStyle={styles.socialButtonText}
+                iconStyle={styles.socialIcon}
+                onPress={() => console.log("Google login")}
+              />
+              <CustomIconButton
+                text="Continue with Apple"
+                source={require("../../../assets/images/apple-icon.png")}
+                btnStyle={styles.socialButton}
+                textStyle={styles.socialButtonText}
+                iconStyle={styles.socialIcon}
+                onPress={() => console.log("Apple login")}
+              />
+              <CustomIconButton
+                text="Continue with Facebook"
+                source={require("../../../assets/images/facebook-icon.png")}
+                btnStyle={styles.socialButton}
+                textStyle={styles.socialButtonText}
+                iconStyle={styles.socialIcon}
+                onPress={() => console.log("Facebook login")}
+              />
+            </View>
 
-          {/* Divider */}
-      <Divider />
-          {/* Email Input */}
-          <View style={styles.inputContainer}>
-            <AppText
-              text="E-mail"
-              fontSize={Typography.fontSize.sm}
-              fontName="CircularStd-Medium"
-              color={Colors.white}
-              style={styles.inputLabel}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="your@email.com"
-              placeholderTextColor="rgba(255, 255, 255, 0.5)"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              value={email}
-              onChangeText={setEmail}
-            />
+            {/* Divider */}
+            <Divider />
+            {/* Email Input */}
+            <View style={styles.inputContainer}>
+              <AppText
+                text="E-mail"
+                fontSize={Typography.fontSize.sm}
+                fontName="CircularStd-Medium"
+                color={Colors.white}
+                style={styles.inputLabel}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="your@email.com"
+                placeholderTextColor="rgba(255, 255, 255, 0.5)"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                value={email}
+                onChangeText={setEmail}
+              />
+            </View>
           </View>
-        </View>
         </ScrollView>
 
         {/* Next Button - Positioned absolutely at bottom */}
@@ -173,9 +173,7 @@ const styles = StyleSheet.create({
     gap: Spacing.xs,
     marginBottom: Spacing.xxl,
   },
-  contentContainer: {
-    width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
-  },
+
   socialButtonsContainer: {
     gap: Spacing.md,
     marginBottom: Spacing.xxl,

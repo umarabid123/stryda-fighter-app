@@ -11,7 +11,7 @@ export default function Divider() {
               text="Or continue with"
               fontSize={Typography.fontSize.md}
               fontName="CircularStd-Book"
-              color={Colors.darkGray}
+              color={Colors.textSecondary}
               style={styles.dividerText}
             />
             <View style={styles.dividerLine} />

@@ -115,7 +115,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
               text="You can change this later."
               fontSize={Typography.fontSize.md}
               fontName="CircularStd-Book"
-              color={colors.textSecondary}
+              color={Colors.textSecondary}
               textAlign="center"
               style={styles.subtitle}
             />
@@ -216,7 +216,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
                   text="Website, Instagram, TikTok, Facebook, etc."
                   fontSize={Typography.fontSize.md}
                   fontName="CircularStd-Book"
-                  color={colors.textSecondary}
+                  color={Colors.textSecondary}
                 />
               </View>
 
@@ -233,7 +233,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
                       text={link.url}
                       fontSize={Typography.fontSize.lg}
                       fontName="CircularStd-Book"
-                      color={colors.textSecondary}
+                      color={Colors.textSecondary}
                       lines={1}
                       style={styles.socialLinkUrl}
                     />
@@ -246,7 +246,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
                       text="×"
                       fontSize={Typography.fontSize.xxl}
                       fontName="CircularStd-Medium"
-                      color={colors.white}
+                      color={Colors.white}
                     />
                   </TouchableOpacity>
                 </View>

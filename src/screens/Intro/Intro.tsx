@@ -63,7 +63,7 @@ export default function Intro({ onSignUp, onLogIn }: IntroProps) {
       <AppText
         text="The hub of combat sports."
         fontSize={Typography.fontSize.md}
-        color={colors.textSecondary}
+        color={Colors.textSecondary}
         textAlign="center"
         style={styles.tagline}
       />
@@ -82,7 +82,7 @@ export default function Intro({ onSignUp, onLogIn }: IntroProps) {
             style={styles.cardImage}
             resizeMode="cover"
           >
-            <View style={styles.cardOverlay} />
+            {/* <View style={styles.cardOverlay} /> */}
           </ImageBackground>
         </View>
 
