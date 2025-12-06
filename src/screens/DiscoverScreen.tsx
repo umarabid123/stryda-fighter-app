@@ -1,20 +1,20 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   Dimensions,
   FlatList,
+  ScrollView,
   StyleSheet,
   View,
-  ScrollView,
 } from 'react-native';
 import CarouselItem from '../components/CarouselItem';
+import AppButton from '../components/common/AppButton';
+import AppText from '../components/common/AppText';
 import Header from '../components/common/Header';
 import SearchSection from '../components/common/SearchSection';
-import { Colors } from '../constant';
-import AppText from '../components/common/AppText';
 import EventCard from '../components/EventCard';
 import FighterCard from '../components/FighterCard';
-import AppButton from '../components/common/AppButton';
-import { useNavigation } from '@react-navigation/native';
+import { Colors } from '../constant';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -61,6 +61,7 @@ export default function DiscoverScreen() {
       fighterFlag: require("../../assets/images/flag-icon.png"),
       discipline: "Muay Thai",
       fightRecord: "12-4-0",
+      countryCode: "DEN",
       weightClass: "63.5 kg",
     },
     {
@@ -70,6 +71,7 @@ export default function DiscoverScreen() {
       fighterFlag: require("../../assets/images/flag-icon.png"),
       discipline: "Kickboxing",
       fightRecord: "10-2-1",
+      countryCode: "USA",
       weightClass: "70 kg",
     },
     {
@@ -79,6 +81,7 @@ export default function DiscoverScreen() {
       fighterFlag: require("../../assets/images/flag-icon.png"),
       discipline: "Boxing",
       fightRecord: "15-1-0",
+      countryCode: "GBR",
       weightClass: "75 kg",
     },
   ];
@@ -156,9 +159,11 @@ export default function DiscoverScreen() {
                 fighterName={item.fighterName}
                 fighterImage={item.fighterImage}
                 fighterFlag={item.fighterFlag}
+                countryCode={item.countryCode}
                 discipline={item.discipline}
                 fightRecord={item.fightRecord}
                 weightClass={item.weightClass}
+                onPress={() => navigation.navigate('FighterProfileScreen')}
               />
             )}
           />
