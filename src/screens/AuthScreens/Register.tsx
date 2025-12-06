@@ -112,7 +112,7 @@ export default function Register({ onLoginPress }: RegisterProps) {
             text="OR"
             fontSize={Typography.fontSize.md}
             fontName="CircularStd-Book"
-            color={colors.textSecondary}
+            color={Colors.textSecondary}
             style={styles.dividerText}
           />
           <View style={styles.dividerLine} />
@@ -161,7 +161,7 @@ export default function Register({ onLoginPress }: RegisterProps) {
             text="By signing up, you agree to our "
             fontSize={Typography.fontSize.sm}
             fontName="CircularStd-Book"
-            color={colors.textSecondary}
+            color={Colors.textSecondary}
           />
           <TouchableOpacity>
             <AppText
@@ -176,7 +176,7 @@ export default function Register({ onLoginPress }: RegisterProps) {
             text=" and "
             fontSize={Typography.fontSize.sm}
             fontName="CircularStd-Book"
-            color={colors.textSecondary}
+            color={Colors.textSecondary}
           />
           <TouchableOpacity>
             <AppText
@@ -203,7 +203,7 @@ export default function Register({ onLoginPress }: RegisterProps) {
             text="Already have an account? "
             fontSize={Typography.fontSize.md}
             fontName="CircularStd-Book"
-            color={colors.textSecondary}
+            color={Colors.textSecondary}
           />
           <TouchableOpacity
             onPress={() => {

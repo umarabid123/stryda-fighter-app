@@ -68,7 +68,7 @@ export default function CustomInputField({
             <AppText
               text={secureText ? '👁️' : '👁️‍🗨️'}
               fontSize={Typography.fontSize.lg}
-              color={colors.textSecondary}
+              color={Colors.textSecondary}
             />
           </TouchableOpacity>
         )}
@@ -78,7 +78,7 @@ export default function CustomInputField({
             <AppText
               text="🔍"
               fontSize={Typography.fontSize.lg}
-              color={colors.textSecondary}
+              color={Colors.textSecondary}
             />
           </TouchableOpacity>
         )}
@@ -87,7 +87,7 @@ export default function CustomInputField({
             <AppText
               text="📅"
               fontSize={Typography.fontSize.lg}
-              color={colors.textSecondary}
+              color={Colors.textSecondary}
             />
           </TouchableOpacity>
         )}
@@ -96,7 +96,7 @@ export default function CustomInputField({
             <AppText
               text="🕐"
               fontSize={Typography.fontSize.lg}
-              color={colors.textSecondary}
+              color={Colors.textSecondary}
             />
           </TouchableOpacity>
         )}

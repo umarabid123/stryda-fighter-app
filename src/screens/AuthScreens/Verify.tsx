@@ -113,7 +113,7 @@ export default function Verify({ onVerifyComplete }: VerifyProps) {
                 text="Enter the 4 digits sent to your inbox."
                 fontSize={Typography.fontSize.md}
                 fontName="CircularStd-Book"
-                color={colors.textSecondary}
+                color={Colors.textSecondary}
                 textAlign="center"
                 style={styles.subtitle}
               />
@@ -156,7 +156,7 @@ export default function Verify({ onVerifyComplete }: VerifyProps) {
               text="Didn't recieve any e-mail?"
               fontSize={Typography.fontSize.md}
               fontName="CircularStd-Book"
-              color={colors.textSecondary}
+              color={Colors.textSecondary}
               textAlign="center"
               style={styles.resendText}
             />
