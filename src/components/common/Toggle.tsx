@@ -16,6 +16,9 @@ interface ToggleProps {
   value: boolean;
   onToggle: (value: boolean) => void;
   containerStyle?: ViewStyle;
+  labelStyle?: any;
+  subtitleStyle?: any;
+  layout?: 'row' | 'column';
 }
 
 export default function Toggle({
@@ -24,10 +27,13 @@ export default function Toggle({
   value,
   onToggle,
   containerStyle,
+  subtitleStyle,
+  labelStyle,
+  layout = 'row',
 }: ToggleProps) {
   const colorScheme = useColorScheme();
   const colors = colorScheme === 'dark' ? Colors.dark : Colors.light;
-  
+
   const thumbPosition = useRef(new Animated.Value(value ? 1 : 0)).current;
 
   useEffect(() => {
@@ -40,24 +46,24 @@ export default function Toggle({
 
   const thumbLeft = thumbPosition.interpolate({
     inputRange: [0, 1],
-    outputRange: [4, 44], // 4px when off, 44px when on (80px width - 32px thumb - 4px margin)
+    outputRange: [4, 44],
   });
 
   const thumbColor = thumbPosition.interpolate({
     inputRange: [0, 1],
-    outputRange: [Colors.white, Colors.black], // White when off, black when on
+    outputRange: [Colors.white, Colors.black],
   });
 
   return (
     <View style={[styles.container, containerStyle]}>
-      <View style={styles.content}>
-        <View style={styles.textContainer}>
+      <View style={[styles.content, layout === 'column' && { flexDirection: 'column', alignItems: 'flex-start', gap: 20 }]}>
+        <View style={[styles.textContainer, layout === 'column' && { flex: 0, width: '100%' }]}>
           <AppText
             text={label}
             fontSize={Typography.fontSize.md}
             fontName="CircularStd-Medium"
             color={colors.white}
-            style={styles.label}
+            style={[styles.label, labelStyle]}
           />
           {subtitle && (
             <AppText
@@ -65,7 +71,7 @@ export default function Toggle({
               fontSize={Typography.fontSize.md}
               fontName="CircularStd-Book"
               color="rgba(255, 255, 255, 0.8)"
-              style={styles.subtitle}
+              style={[styles.subtitle, subtitleStyle]}
             />
           )}
         </View>
@@ -97,7 +103,8 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.md,
   },
   content: {
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
     gap: Spacing.md,
   },

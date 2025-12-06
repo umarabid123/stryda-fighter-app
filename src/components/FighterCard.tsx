@@ -1,11 +1,12 @@
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import AppText from './common/AppText';
 import { Colors } from '../constant';
 
-const InfoTag = ({ label }:any) => (
+const InfoTag = ({ label, icon }: any) => (
   <View style={styles.infoTag}>
     <AppText text={label} fontSize={14} color={Colors.white} />
+    {icon && <Image source={icon} style={styles.tagIcon} resizeMode="contain" />}
   </View>
 );
 
@@ -13,13 +14,15 @@ export default function FighterCard({
   fighterName = "Fighter Name",
   fighterImage = require("../../assets/images/event-card-img.png"),
   fighterFlag = require("../../assets/images/flag-icon.png"),
+  countryCode = "DEN",
   discipline = "Muay Thai",
+  onPress = () => { },
   fightRecord = "0-0-0",
   weightClass = "65 kg",
   style = {},
 }) {
   return (
-    <View style={[styles.cardContainer, style]}>
+    <TouchableOpacity style={[styles.cardContainer, style]} onPress={onPress}>
       <Image source={fighterImage} resizeMode="cover" style={styles.fighterImage} />
 
       <View>
@@ -30,16 +33,15 @@ export default function FighterCard({
             color={Colors.white}
             style={{ fontWeight: '600' }}
           />
-          <Image source={fighterFlag} style={styles.flagIcon} resizeMode="contain" />
         </View>
 
         <View style={styles.metaRow}>
-          <InfoTag label={discipline} />
           <InfoTag label={fightRecord} />
-          <InfoTag label={weightClass} />
+          <InfoTag label={countryCode} icon={fighterFlag} />
+          <InfoTag label={discipline} />
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -54,10 +56,11 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 50,
   },
-  flagIcon: {
+  tagIcon: {
     width: 14,
     height: 14,
-    borderRadius: 7,
+    borderRadius: 50,
+    marginLeft: 6,
   },
   headerRow: {
     flexDirection: "row",
@@ -75,5 +78,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 99,
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

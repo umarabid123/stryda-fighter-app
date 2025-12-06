@@ -3,12 +3,14 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import MeshGradientBackground from '../components/common/MeshGradientBackground';
 import Header from '../components/common/Header';
 import { Colors } from '../constant';
+import AppText from '../components/common/AppText';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
 const MedicalPaper = () => {
   return (
     <View style={styles.container}>
       <Header title="Medical Papers" isBack={true} />
+      <AppText text={'TODO\nMedical Papers'} fontSize={44} color={Colors.white} style={{ fontWeight: '600', textAlign: 'center', marginTop: 155 }} />
     </View>
   );
 };
@@ -22,6 +24,6 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
     paddingTop: 40,
-    
+
   },
 });

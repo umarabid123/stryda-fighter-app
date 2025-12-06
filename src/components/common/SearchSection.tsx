@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, TextInput, Image, StyleSheet } from "react-native";
 import AppText from "./AppText";
 import CustomIconButton from "./CustomIconButton";
@@ -9,8 +9,8 @@ export default function SearchSection({
   subtitle = "Browse fighters and events worldwide.",
   placeholder = "Search",
   searchValue = "",
-  onSearchChange = () => {},
-  onFilterPress = () => {},
+  onSearchChange = () => { },
+  onFilterPress = () => { },
   searchIcon = require("../../../assets/images/search-icon.png"),
   filterIcon = require("../../../assets/images/search-filter-icon.png"),
   containerStyle = {},
@@ -19,6 +19,13 @@ export default function SearchSection({
   searchBarStyle = {},
   filterButtonStyle = {},
 }) {
+
+  const [filter, setFilter] = useState(false)
+
+  const handleFilterPress = () => {
+    setFilter(!filter)
+    onFilterPress()
+  }
   return (
     <View style={[styles.container, containerStyle]}>
       <AppText
@@ -53,11 +60,12 @@ export default function SearchSection({
 
         <CustomIconButton
           source={filterIcon}
-          onPress={onFilterPress}
-          btnStyle={[styles.filterBtn, filterButtonStyle]}
-          textStyle={{ display: "none" }}
-          iconStyle={styles.filterIcon}
+          onPress={handleFilterPress}
+          btnStyle={[styles.filterBtn, { backgroundColor: filter ? "rgb(15,44,28)" : "#FFFFFF26", borderWidth: 1, borderColor: filter ? "rgb(15,44,28)" : "#FFFFFF26" }, filterButtonStyle]}
+          textStyle={styles.hiddenText}
+          iconStyle={[styles.filterIcon, filter ? styles.filterIconActive : styles.filterIconInactive]}
         />
+
       </View>
     </View>
   );
@@ -98,14 +106,22 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   filterBtn: {
-    backgroundColor: "#FFFFFF26",
     paddingVertical: 14,
     paddingHorizontal: 14,
-    width:52,
-    height:52
+    width: 52,
+    height: 52,
   },
   filterIcon: {
     width: 24,
     height: 24,
+  },
+  filterIconActive: {
+    tintColor: Colors.green,
+  },
+  filterIconInactive: {
+    tintColor: "#fff",
+  },
+  hiddenText: {
+    display: "none",
   },
 });
