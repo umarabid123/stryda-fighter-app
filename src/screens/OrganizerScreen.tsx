@@ -17,7 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
-export default function ManagerScreen() {
+export default function OrganizerScreen() {
     const navigation = useNavigation();
     const fighters = [
         {

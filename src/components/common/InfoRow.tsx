@@ -13,28 +13,42 @@ type Props = {
 
 const InfoRow = ({ label, value, children, labelStyle, containerStyle }: Props) => {
     return (
-        <View style={[styles.container, containerStyle]}>
-            <AppText
-                text={label}
-                color={Colors.textSecondary}
-                fontSize={14}
-                style={labelStyle}
-            />
-            {value ? (
-                <AppText text={value} color={Colors.white} fontSize={16} style={{ fontWeight: 300 }} />
-            ) : (
-                children
-            )}
+        <View style={styles.profileRow}>
+            <View style={styles.labelContainer}>
+                <AppText
+                    text={label}
+                    fontSize={14}
+                    color={Colors.white}
+                    style={[styles.rowLabel, labelStyle]}
+                />
+            </View>
+            <View style={styles.valueContainer}>
+                {value ? (
+                    <AppText text={value} fontSize={16} color={Colors.textSecondary} style={{ fontWeight: 300 }} />
+                ) : (
+                    children
+                )}
+            </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    profileRow: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 4,
+        paddingVertical: 6,
+    },
+    labelContainer: {
+        width: 120, // Fixed width for alignment
+        marginRight: 24, // Gap between label and value
+        alignItems: 'flex-start',
+    },
+    rowLabel: {
+        fontWeight: '600',
+    },
+    valueContainer: {
+        flex: 1,
     },
 });
 

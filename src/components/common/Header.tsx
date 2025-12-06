@@ -18,7 +18,7 @@ interface HeaderProps {
   onNotificationPress?: () => void;
   onMenuPress?: () => void;
   showNotificationDot?: boolean;
-  isBack?:boolean
+  isBack?: boolean
 }
 
 export default function Header({
@@ -32,20 +32,20 @@ export default function Header({
   return (
     <View style={styles.container}>
 
-    <View style={{flexDirection:'row', gap:12, alignItems:'center'}}>
-        {isBack && 
-      <Pressable style={{backgroundColor:'#141414', padding:8, borderRadius:10}} onPress={() => navigation.goBack()}>
-        <Image source={require('../../../assets/images/back-arrow-icon.png')} resizeMode='contain' style={{width:16, height:16}} />
-      </Pressable>
-      }
-      <AppText
-        text={title}
-        fontSize={18}
-        style={{fontWeight:600}}
-        fontName="CircularStd-Medium"
-        color={Colors.white}
-      />
-    </View>
+      <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
+        {isBack &&
+          <Pressable style={{ backgroundColor: '#141414', padding: 8, borderRadius: 10 }} onPress={() => navigation.goBack()}>
+            <Image source={require('../../../assets/images/back-arrow-icon.png')} resizeMode='contain' style={{ width: 16, height: 16 }} />
+          </Pressable>
+        }
+        <AppText
+          text={title}
+          fontSize={18}
+          style={{ fontWeight: 600 }}
+          fontName="CircularStd-Medium"
+          color={Colors.white}
+        />
+      </View>
 
       <View style={styles.rightSection}>
         {/* Notification Bell */}
