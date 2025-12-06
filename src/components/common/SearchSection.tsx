@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Image, StyleSheet } from "react-native";
+import { View, TextInput, Image, StyleSheet, Platform } from "react-native";
 import AppText from "./AppText";
 import CustomIconButton from "./CustomIconButton";
 import { Colors, wp } from "../../constant";
@@ -88,10 +88,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderRadius: 10,
     paddingHorizontal: 6,
-    paddingVertical: 16,
+    paddingVertical: Platform.OS === 'ios' ? 16 : 6,
     flexDirection: "row",
     width: wp(75),
-    maxWidth: 293,
+    maxWidth: wp(75),
     alignItems: "center",
   },
   searchIcon: {

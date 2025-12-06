@@ -111,6 +111,7 @@ export default function FighterScreen() {
                                 discipline={item.discipline}
                                 fightRecord={item.fightRecord}
                                 weightClass={item.weightClass}
+                                onPress={() => navigation.navigate('FighterProfileScreen')}
                             />
                         )}
                     />

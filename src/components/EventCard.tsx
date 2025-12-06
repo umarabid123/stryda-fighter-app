@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, ViewStyle, ImageSourcePropType } from "react-native";
+import { View, Image, StyleSheet, ViewStyle, ImageSourcePropType, TouchableOpacity } from "react-native";
 import AppText from "./common/AppText";
 import { Colors, wp } from "../constant";
 
@@ -19,7 +19,7 @@ export default function EventCard({
   onPress,
 }: EventCardProps) {
   return (
-    <View style={[styles.card, containerStyle]}>
+    <TouchableOpacity style={[styles.card, containerStyle]} onPress={onPress}>
       <Image source={image} resizeMode="cover" style={styles.image} />
 
       <View style={styles.textContainer}>
@@ -36,7 +36,7 @@ export default function EventCard({
           color={Colors.textSecondary}
         />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 16,
-    width:"auto"
+    width: "auto"
   },
   image: {
     width: 80,

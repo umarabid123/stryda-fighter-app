@@ -131,7 +131,7 @@ export default function DiscoverScreen() {
                 subtitle={item.subtitle}
                 image={item.image}
                 containerStyle={styles.cardSpacing}
-                onPress={() => console.log('Pressed:', item.title)}
+                onPress={() => navigation.navigate('EventDetail')}
               />
             )}
           />

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Colors } from '../../constant';
 import AppText from './AppText';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const DESIGN_WIDTH = 393;
@@ -29,6 +29,7 @@ export default function Header({
   isBack = false
 }: HeaderProps) {
   const navigation = useNavigation()
+  const route = useRoute();
   return (
     <View style={styles.container}>
 
@@ -67,7 +68,13 @@ export default function Header({
         </TouchableOpacity>
 
         {/* Hamburger Menu */}
-        <TouchableOpacity style={styles.iconButton} onPress={() => navigation.navigate('Menu')}>
+        <TouchableOpacity style={styles.iconButton} onPress={() => {
+          if (route.name === 'Menu') {
+            navigation.navigate('Home'); // already on Menu → go to Home
+          } else {
+            navigation.navigate('Menu'); // go to Menu
+          }
+        }}>
           <View style={styles.hamburgerIcon}>
             <Image
               source={require('../../../assets/images/menu-line-icon.png')}
