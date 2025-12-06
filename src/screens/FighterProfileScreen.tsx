@@ -13,12 +13,31 @@ import InfoRow from '../components/common/InfoRow';
 import NextFightCard from '../components/NextFightCard';
 import { Colors } from '../constant';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const Tag = ({ text, icon }: { text: string; icon?: any }) => (
     <View style={styles.tag}>
         <AppText text={text} fontSize={14} color={Colors.white} />
         {icon && <Image source={icon} style={styles.tagIcon} />}
+    </View>
+);
+
+const ProfileRow = ({ label, value, children, labelStyle }: any) => (
+    <View style={styles.profileRow}>
+        <View style={styles.labelContainer}>
+            <AppText
+                text={label}
+                fontSize={16}
+                color={Colors.white}
+                style={[styles.rowLabel, labelStyle]}
+            />
+        </View>
+        <View style={styles.valueContainer}>
+            {value ? (
+                <AppText text={value} fontSize={16} color={Colors.textSecondary} style={{ fontWeight: '400' }} />
+            ) : (
+                children
+            )}
+        </View>
     </View>
 );
 
@@ -37,8 +56,8 @@ export default function FighterProfileScreen() {
                         />
                     </View>
                     <AppText text="Fighter" fontSize={14} color={Colors.light.success} style={styles.roleText} />
-                    <AppText text="Jaspar Landal" fontSize={24} color={Colors.white} style={styles.nameText} />
-                    <AppText text="IFMA World Champion 2025" fontSize={16} color={Colors.textSecondary} style={styles.orgText} />
+                    <AppText text="Jaspar Landal" fontSize={32} color={Colors.white} style={styles.nameText} />
+                    <AppText text="IFMA World Champion 2025" fontSize={16} color={Colors.white} style={styles.orgText} />
 
                     <View style={styles.tagsRow}>
                         <Tag text="12-4-0" />
@@ -58,23 +77,23 @@ export default function FighterProfileScreen() {
 
                 {/* Info Section */}
                 <View style={styles.infoSection}>
-                    <InfoRow label="Age" value="20 years" />
-                    <InfoRow label="Weight" value="57-61 kg" />
-                    <InfoRow label="Division" value="Pro" />
-                    <InfoRow label="Height" value="172 cm" />
+                    <ProfileRow label="Age" value="20 years" />
+                    <ProfileRow label="Weight" value="57-61 kg" />
+                    <ProfileRow label="Division" value="Pro" />
+                    <ProfileRow label="Height" value="172 cm" />
 
-                    <InfoRow label="Muay Thai" value="12W – 4L – 0D" labelStyle={styles.statLabel} />
-                    <InfoRow label="K-1" value="3W – 0L – 0D" labelStyle={styles.statLabel} />
-                    <InfoRow label="Boxing" value="0W – 0L – 0D" labelStyle={styles.statLabel} />
+                    <ProfileRow label="Muay Thai" value="12W – 4L – 0D" labelStyle={styles.statLabel} />
+                    <ProfileRow label="K-1" value="3W – 0L – 0D" labelStyle={styles.statLabel} />
+                    <ProfileRow label="Boxing" value="0W – 0L – 0D" labelStyle={styles.statLabel} />
 
-                    <InfoRow label="Gender" value="Male" />
-                    <InfoRow label="Country">
+                    <ProfileRow label="Gender" value="Male" />
+                    <ProfileRow label="Country">
                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                             <Image source={require('../../assets/images/flag-icon.png')} style={styles.flagIconSmall} />
                             <AppText text="Denmark" fontSize={16} color={Colors.textSecondary} />
                         </View>
-                    </InfoRow>
-                    <InfoRow label="Gym" value="Extreme Muay Thai" />
+                    </ProfileRow>
+                    <ProfileRow label="Gym" value="Extreme Muay Thai" />
                 </View>
 
                 <View style={styles.divider} />
@@ -86,10 +105,10 @@ export default function FighterProfileScreen() {
                         <Image source={require('../../assets/images/profile-img.png')} style={styles.managerAvatar} />
                         <View>
                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                                <AppText text="Youssef Assouik" fontSize={16} color={Colors.white} style={{ fontWeight: '700' }} />
+                                <AppText text="Youssef Assouik" fontSize={18} color={Colors.white} style={{ fontWeight: 600 }} />
                                 <Image source={require('../../assets/images/flag-icon.png')} style={styles.flagIconSmall} />
                             </View>
-                            <AppText text="Assouik Gym Management" fontSize={14} color={Colors.textSecondary} />
+                            <AppText text="Assouik Gym Management" fontSize={16} color={Colors.textSecondary} />
                         </View>
                     </View>
                 </View>
@@ -102,7 +121,7 @@ export default function FighterProfileScreen() {
                     <NextFightCard
                         title="ADFC 4.0 – Zaman vs Lai..."
                         date="Oct 11, 2025"
-                        image={require('../../assets/images/logo.png')} // Placeholder for logo
+                        image={require('../../assets/images/next-card-img.png')} // Placeholder for logo
                     />
                 </View>
 
@@ -157,7 +176,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     orgText: {
-        marginBottom: 16,
+        marginBottom: 24,
     },
     tagsRow: {
         flexDirection: 'row',
@@ -200,14 +219,13 @@ const styles = StyleSheet.create({
         gap: 24,
     },
     statLabel: {
-        backgroundColor: '#333',
-        paddingHorizontal: 12,
-        paddingVertical: 4,
-        borderRadius: 12,
+        backgroundColor: '#2C2C2C', // Dark grey background
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        borderRadius: 20, // Rounded corners
         overflow: 'hidden',
         textAlign: 'center',
-        width: 'auto',
-        minWidth: 80,
+        fontWeight: '600',
     },
     flagIconSmall: {
         width: 16,
@@ -224,12 +242,12 @@ const styles = StyleSheet.create({
     managerCard: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 12,
+        gap: 16,
     },
     managerAvatar: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
+        width: 80,
+        height: 80,
+        borderRadius: 40,
     },
     linksContainer: {
         gap: 12,
@@ -244,5 +262,21 @@ const styles = StyleSheet.create({
         color: Colors.black,
         fontWeight: '700',
         fontSize: 16,
+    },
+    profileRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 6,
+    },
+    labelContainer: {
+        width: 120, // Fixed width for alignment
+        marginRight: 24, // Gap between label and value
+        alignItems: 'flex-start',
+    },
+    rowLabel: {
+        fontWeight: '600',
+    },
+    valueContainer: {
+        flex: 1,
     },
 });

@@ -15,7 +15,7 @@ export default function NextFightCard({ title, date, image, containerStyle }: Ne
         <View style={[styles.container, containerStyle]}>
             <Image source={image} style={styles.image} resizeMode="contain" />
             <View style={styles.textContainer}>
-                <AppText text={title} fontSize={16} color={Colors.white} style={styles.title} />
+                <AppText text={title} fontSize={18} color={Colors.white} style={styles.title} />
                 <AppText text={date} fontSize={14} color={Colors.textSecondary} />
             </View>
         </View>
@@ -32,16 +32,15 @@ const styles = StyleSheet.create({
         gap: 16,
     },
     image: {
-        width: 60,
-        height: 60,
-        borderRadius: 8,
-        backgroundColor: '#FF4500', // Fallback or background for the logo
+        width: 80,
+        height: 80,
+        borderRadius: 6,
     },
     textContainer: {
         flex: 1,
     },
     title: {
-        fontWeight: '700',
+        fontWeight: 600,
         marginBottom: 4,
     },
 });

@@ -17,11 +17,11 @@ const InfoRow = ({ label, value, children, labelStyle, containerStyle }: Props) 
             <AppText
                 text={label}
                 color={Colors.textSecondary}
-                fontSize={16}
+                fontSize={14}
                 style={labelStyle}
             />
             {value ? (
-                <AppText text={value} color={Colors.white} fontSize={16} style={{ fontWeight: '500' }} />
+                <AppText text={value} color={Colors.white} fontSize={16} style={{ fontWeight: 300 }} />
             ) : (
                 children
             )}
