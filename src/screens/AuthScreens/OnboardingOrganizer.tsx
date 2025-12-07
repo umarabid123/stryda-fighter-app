@@ -84,7 +84,7 @@ const{setIsAuthenticated} =useAuth()
               text="Make it easy for matchmakers to find you."
               fontSize={Typography.fontSize.md}
               fontName="CircularStd-Book"
-              color="rgba(255, 255, 255, 0.8)"
+              color={Colors.whiteOpacity80}
               textAlign="center"
               style={styles.subtitle}
             />
@@ -142,7 +142,7 @@ const{setIsAuthenticated} =useAuth()
                   text="Highlight your position"
                   fontSize={Typography.fontSize.md}
                   fontName="CircularStd-Book"
-                  color="rgba(255, 255, 255, 0.8)"
+                  color={Colors.whiteOpacity80}
                 />
               </View>
               <AppText
@@ -167,7 +167,7 @@ const{setIsAuthenticated} =useAuth()
                   text="Which organisation are you from?"
                   fontSize={Typography.fontSize.md}
                   fontName="CircularStd-Book"
-                  color="rgba(255, 255, 255, 0.8)"
+                  color={Colors.whiteOpacity80}
                 />
               </View>
               <AppText
@@ -192,7 +192,7 @@ const{setIsAuthenticated} =useAuth()
                   text="Add contact options."
                   fontSize={Typography.fontSize.md}
                   fontName="CircularStd-Book"
-                  color="rgba(255, 255, 255, 0.8)"
+                  color={Colors.whiteOpacity80}
                 />
               </View>
               <TouchableOpacity style={styles.addButton}>
@@ -219,7 +219,7 @@ const{setIsAuthenticated} =useAuth()
                   text="If you're a manager"
                   fontSize={Typography.fontSize.md}
                   fontName="CircularStd-Book"
-                  color="rgba(255, 255, 255, 0.8)"
+                  color={Colors.whiteOpacity80}
                 />
               </View>
               <TouchableOpacity style={styles.addButton}>
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: Colors.whiteOpacity20,
     borderRadius: BorderRadius.full,
   },
   progressFill: {
@@ -317,7 +317,7 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: Colors.whiteOpacity10,
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: Colors.whiteOpacity10,
   },
   profileName: {
     marginTop: Spacing.xs,
@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
     gap: Spacing.md,
     paddingBottom: Spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255, 255, 255, 0.15)',
+    borderBottomColor: Colors.whiteOpacity15,
   },
   sectionLabel: {
     letterSpacing: 0.28,
@@ -371,14 +371,14 @@ const styles = StyleSheet.create({
     gap: Spacing.sm,
     paddingBottom: Spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255, 255, 255, 0.15)',
+    borderBottomColor: Colors.whiteOpacity15,
   },
   organisationContainer: {
     width: '100%',
     gap: Spacing.sm,
     paddingBottom: Spacing.md,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255, 255, 255, 0.15)',
+    borderBottomColor: Colors.whiteOpacity15,
   },
   addButton: {
     width: 40,
@@ -402,7 +402,7 @@ const styles = StyleSheet.create({
     minWidth: 120,
     backgroundColor: Colors.white,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    borderColor: Colors.whiteOpacity10,
     borderRadius: BorderRadius.full,
     alignItems: 'center',
     justifyContent: 'center',

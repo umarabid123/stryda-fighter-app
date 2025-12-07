@@ -43,9 +43,9 @@ export default function NotificationToggle({
 
       <Switch
         style={styles.switch}
-        trackColor={{ false: "rgba(255, 255, 255, 0.2)", true: "#22C55E" }}
-        thumbColor={isEnabled ? Colors.white : "rgba(255, 255, 255, 0.5)"}
-        ios_backgroundColor="rgba(255, 255, 255, 0.2)"
+        trackColor={{ false: Colors.whiteOpacity20, true: Colors.successGreenAlt }}
+        thumbColor={isEnabled ? Colors.white : Colors.whiteOpacity50}
+        ios_backgroundColor={Colors.whiteOpacity20}
         onValueChange={handleToggle}
         value={isEnabled}
       />
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     borderBottomWidth: 1,
-    borderBottomColor: "rgba(255, 255, 255, 0.1)",
+    borderBottomColor: Colors.whiteOpacity10,
   },
   textSection: {
     flex: 1,

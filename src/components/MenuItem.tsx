@@ -36,7 +36,7 @@ export default function MenuItem({ icon, label, onPress }: SettingsRowProps) {
       </View>
       <Image
         source={require('../../assets/images/right-arrow-icon.png')}
-        style={{ width: 24, height: 24, tintColor: '#808080'}}
+        style={{ width: 24, height: 24, tintColor: Colors.grayMedium}}
       />
     </TouchableOpacity>
   );
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255, 255, 255, 0.1)',
+    borderBottomColor: Colors.whiteOpacity10,
     marginHorizontal: (16 / DESIGN_WIDTH) * SCREEN_WIDTH,
   },
   leftSection: {

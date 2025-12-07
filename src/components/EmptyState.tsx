@@ -38,19 +38,19 @@ export default function EmptyState({
         text={subtitle}
         fontSize={Typography.fontSize.xl}
         fontName="CircularStd-Book"
-        color={'#FFFFFFCC'}
+        color={Colors.textSecondary}
         style={styles.subtitle}
       />
 
       {/* Content Section */}
-      <AppButton text={buttonLabel} onPress={onButtonPress} textStyle={{color:"#000"}} btnStyle={styles.button}  />
+      <AppButton text={buttonLabel} onPress={onButtonPress} textStyle={{color: Colors.black}} btnStyle={styles.button}  />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#212526',
+    backgroundColor: Colors.darkGray2,
     borderRadius: 12,
     padding: 20,
     justifyContent:'flex-start',

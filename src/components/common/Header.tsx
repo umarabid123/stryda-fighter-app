@@ -34,7 +34,7 @@ export default function Header({
 
       <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}>
         {isBack &&
-          <Pressable style={{ backgroundColor: '#141414', padding: 8, borderRadius: 10 }} onPress={() => navigation.goBack()}>
+          <Pressable style={{ backgroundColor: Colors.darkGray1, padding: 8, borderRadius: 10 }} onPress={() => navigation.goBack()}>
             <Image source={require('../../../assets/images/back-arrow-icon.png')} resizeMode='contain' style={{ width: 16, height: 16 }} />
           </Pressable>
         }
@@ -121,11 +121,17 @@ const styles = StyleSheet.create({
     width: (8 / DESIGN_WIDTH) * SCREEN_WIDTH,
     height: (8 / DESIGN_WIDTH) * SCREEN_WIDTH,
     borderRadius: (4 / DESIGN_WIDTH) * SCREEN_WIDTH,
-    backgroundColor: '#22C55E',
+    backgroundColor: Colors.successGreenAlt,
   },
   hamburgerIcon: {
     gap: (4 / DESIGN_WIDTH) * SCREEN_WIDTH,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  hamburgerLine: {
+    width: (20 / DESIGN_WIDTH) * SCREEN_WIDTH,
+    height: 2,
+    backgroundColor: Colors.white,
+    borderRadius: 1,
   },
 });

@@ -121,7 +121,7 @@ export default function EventDetail() {
                     </View>
 
                     {/* Apply Section */}
-                    <View style={{ borderBottomWidth: 1, borderBottomColor: "#333" }}>
+                    <View style={{ borderBottomWidth: 1, borderBottomColor: Colors.darkGray3 }}>
                         <AppButton
                             text="Apply"
                             btnStyle={styles.applyButton}
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     },
     heroOverlay: {
         height: 100,
-        backgroundColor: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 100%)', // This won't work in RN without a library, using simple opacity
+        backgroundColor: Colors.black, // Note: linear-gradient won't work in RN without a library, using solid color
         // fallback
         position: 'absolute',
         bottom: 0,
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
         marginTop: 32,
         gap: 12,
         borderBottomWidth: 1,
-        borderBottomColor: '#333',
+        borderBottomColor: Colors.darkGray3,
         paddingBottom: 32
     },
     organizerAvatar: {
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
         fontWeight: 600,
     },
     lookingForList: {
-        backgroundColor: '#141414',
+        backgroundColor: Colors.darkGray1,
         borderRadius: 12,
         paddingTop: 16,
         gap: 8,

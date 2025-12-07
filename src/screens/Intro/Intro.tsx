@@ -99,7 +99,7 @@ export default function Intro({ onSignUp, onLogIn }: IntroProps) {
                   text="For Fighters"
                   fontSize={Typography.fontSize.sm}
                   fontName="CircularStd-Medium"
-                  color="#1cd760"
+                  color={Colors.successGreen}
                   style={styles.cardLabel}
                 />
                 <AppText
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    backgroundColor: Colors.blackOpacity30,
   },
   gradientOverlay: {
     flex: 1,
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: "20%", // Gradient covers bottom 60%
-    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    backgroundColor: Colors.blackOpacity60,
   },
   cardContent: {
     gap: Spacing.sm,

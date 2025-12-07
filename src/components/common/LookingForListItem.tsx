@@ -26,7 +26,7 @@ export default function LookingForListItem({
                 {avatar ? (
                     <Image source={avatar} style={styles.avatar} />
                 ) : (
-                    <View style={[styles.avatar, { backgroundColor: '#333' }]} >
+                    <View style={[styles.avatar, { backgroundColor: Colors.darkGray3 }]} >
                         <Image source={require('../../../assets/images/profile.png')} style={styles.avatar} />
                     </View>
                 )}
@@ -56,7 +56,7 @@ export default function LookingForListItem({
                     <AppText
                         text={isCanApply ? 'You can apply' : "You can't apply"}
                         fontSize={12}
-                        color={isCanApply ? '#1CD760' : "#EE665C"}
+                        color={isCanApply ? Colors.successGreen : Colors.errorRed}
                     />
                 </View>
             </View>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 16,
         borderBottomWidth: 1,
-        borderBottomColor: '#333',
+        borderBottomColor: Colors.darkGray3,
     },
     avatarContainer: {
         marginRight: 12,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         gap: 8,
     },
     tag: {
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: Colors.whiteOpacity20,
         paddingHorizontal: 8,
         paddingVertical: 4,
         borderRadius: 12,

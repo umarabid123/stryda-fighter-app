@@ -40,7 +40,7 @@ export default function BottomTabs({
             <View style={styles.tabContent}>
               <Image
                 source={tab.icon}
-                style={{ width: 32, height: 32,  tintColor: activeTab === tab.id ? "#1CD760" :"#fff" }}
+                style={{ width: 32, height: 32,  tintColor: activeTab === tab.id ? Colors.successGreen : Colors.white }}
                 resizeMode="contain"
               />
 
@@ -48,7 +48,7 @@ export default function BottomTabs({
                 text={tab.label}
                 fontSize={Typography.fontSize.xs}
                 fontName="CircularStd-Book"
-                color={isActive ? '#1CD760' : '#FFFFFF99'}
+                color={isActive ? Colors.successGreen : Colors.whiteOpacity60}
                 style={styles.tabLabel}
               />
             </View>
