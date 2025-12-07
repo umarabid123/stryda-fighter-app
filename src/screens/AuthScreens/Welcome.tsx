@@ -14,9 +14,9 @@ import {
 import { useNavigation } from "@react-navigation/native"
 import type { NavigationProp } from "@react-navigation/native"
 import { Colors, Spacing, Typography, BorderRadius } from "../../constant"
+import MeshGradientBackground from "../../components/common/MeshGradientBackground"
 import AppText from "../../components/common/AppText"
 import AppButton from "../../components/common/AppButton"
-import MeshGradientBackground from "../../components/common/MeshGradientBackground"
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
 

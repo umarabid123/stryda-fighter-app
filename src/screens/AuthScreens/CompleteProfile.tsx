@@ -9,14 +9,18 @@ import {
   useColorScheme,
   TouchableOpacity,
   Image,
+  Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
+import { launchImageLibrary, ImagePickerResponse, MediaType } from 'react-native-image-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { Colors, Spacing, Typography, BorderRadius } from '../../constant';
 import AppText from '../../components/common/AppText';
 import AppButton from '../../components/common/AppButton';
 import ProfileInput from '../../components/common/ProfileInput';
 import MeshGradientBackground from '../../components/common/MeshGradientBackground';
+import SelectPicker from '../../components/common/SelectPicker';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -40,11 +44,76 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
   const [firstName, setFirstName] = useState('Jonathan');
   const [lastName, setLastName] = useState('Haggerty');
   const [dateOfBirth, setDateOfBirth] = useState('Mar 03, 2000');
-  const [gender, setGender] = useState('-');
+  const [birthDate, setBirthDate] = useState(new Date(2000, 2, 3)); // March 3, 2000
+  const [gender, setGender] = useState('');
   const [country, setCountry] = useState('England');
+  const [showGenderPicker, setShowGenderPicker] = useState(false);
+  const [showCountryPicker, setShowCountryPicker] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const [socialLinks, setSocialLinks] = useState([
     { platform: 'Instagram', url: 'https://www.instagram.com/laugepetersen' },
   ]);
+
+  const genderOptions = ['Male', 'Female', 'Other', 'Prefer not to say'];
+  const countryOptions = [
+    'England',
+    'United States',
+    'Canada',
+    'Australia',
+    'Germany',
+    'France',
+    'Spain',
+    'Italy',
+    'Brazil',
+    'Mexico',
+    'Japan',
+    'China',
+    'India',
+    'Thailand',
+    'Netherlands',
+    'Belgium',
+    'Sweden',
+    'Norway',
+    'Denmark',
+    'Poland',
+    'Portugal',
+    'Greece',
+    'Turkey',
+    'Russia',
+    'South Korea',
+    'Singapore',
+    'Malaysia',
+    'Philippines',
+    'Indonesia',
+    'Vietnam',
+    'New Zealand',
+    'South Africa',
+    'Argentina',
+    'Chile',
+    'Colombia',
+    'Peru',
+    'Venezuela',
+    'Ecuador',
+    'Uruguay',
+    'Paraguay',
+    'Bolivia',
+    'Costa Rica',
+    'Panama',
+    'Guatemala',
+    'Honduras',
+    'El Salvador',
+    'Nicaragua',
+    'Dominican Republic',
+    'Cuba',
+    'Jamaica',
+    'Trinidad and Tobago',
+    'Barbados',
+    'Bahamas',
+    'Belize',
+    'Guyana',
+    'Suriname',
+    'Other',
+  ];
 
   // Calculate progress: Step 1 = 25%, Step 2 = 50%
   const progressPercentage = currentStep === 1 ? 25 : 50;
@@ -58,8 +127,53 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
   };
 
   const handleProfileImagePress = () => {
-    // TODO: Open image picker
-    console.log('Select profile image');
+    const options = {
+      mediaType: 'photo' as MediaType,
+      quality: 0.8 as const,
+      maxWidth: 1200,
+      maxHeight: 1200,
+      selectionLimit: 1,
+    };
+
+    launchImageLibrary(options, (response: ImagePickerResponse) => {
+      if (response.didCancel) {
+        // User cancelled the picker
+        return;
+      } else if (response.errorMessage) {
+        Alert.alert('Error', response.errorMessage);
+        return;
+      } else if (response.assets && response.assets.length > 0) {
+        const asset = response.assets[0];
+        if (asset.uri) {
+          setProfileImage(asset.uri);
+        }
+      }
+    });
+  };
+
+  const formatDate = (date: Date): string => {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const month = months[date.getMonth()];
+    const day = date.getDate().toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month} ${day}, ${year}`;
+  };
+
+  const handleDateChange = (event: any, selectedDate?: Date) => {
+    if (Platform.OS === 'android') {
+      setShowDatePicker(false);
+    }
+    if (selectedDate) {
+      setBirthDate(selectedDate);
+      setDateOfBirth(formatDate(selectedDate));
+    }
+    if (Platform.OS === 'ios') {
+      // On iOS, keep the picker open until user confirms
+    }
+  };
+
+  const handleDatePickerPress = () => {
+    setShowDatePicker(true);
   };
 
   const handleNext = () => {
@@ -166,21 +280,21 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
               value={dateOfBirth}
               placeholder="Mar 03, 2000"
               editable={false}
-              onPress={() => console.log('Open date picker')}
+              onPress={handleDatePickerPress}
             />
             <ProfileInput
               label="Gender *"
               value={gender}
               placeholder="-"
               editable={false}
-              onPress={() => console.log('Open gender picker')}
+              onPress={() => setShowGenderPicker(true)}
             />
             <ProfileInput
               label="Country *"
               value={country}
               placeholder="England"
               editable={false}
-              onPress={() => console.log('Open country picker')}
+              onPress={() => setShowCountryPicker(true)}
             />
 
             {/* Sports of Interest */}
@@ -379,6 +493,53 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
           </View>
         )}
       </KeyboardAvoidingView>
+
+      {/* Gender Picker Modal */}
+      <SelectPicker
+        visible={showGenderPicker}
+        onClose={() => setShowGenderPicker(false)}
+        title="Select Gender"
+        options={genderOptions}
+        selectedValue={gender}
+        onSelect={setGender}
+      />
+
+      {/* Country Picker Modal */}
+      <SelectPicker
+        visible={showCountryPicker}
+        onClose={() => setShowCountryPicker(false)}
+        title="Select Country"
+        options={countryOptions}
+        selectedValue={country}
+        onSelect={setCountry}
+      />
+
+      {/* Date Picker */}
+      {showDatePicker && (
+        <DateTimePicker
+          value={birthDate}
+          mode="date"
+          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          onChange={handleDateChange}
+          maximumDate={new Date()}
+          minimumDate={new Date(1900, 0, 1)}
+        />
+      )}
+      {Platform.OS === 'ios' && showDatePicker && (
+        <View style={styles.iosDatePickerContainer}>
+          <TouchableOpacity
+            style={styles.iosDatePickerButton}
+            onPress={() => setShowDatePicker(false)}
+          >
+            <AppText
+              text="Done"
+              fontSize={Typography.fontSize.md}
+              fontName="CircularStd-Medium"
+              color={Colors.white}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
@@ -629,5 +790,23 @@ const styles = StyleSheet.create({
   },
   laterButton: {
     paddingVertical: Spacing.sm,
+  },
+  iosDatePickerContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: Colors.black,
+    paddingHorizontal: Spacing.xl,
+    paddingVertical: Spacing.lg,
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(255, 255, 255, 0.15)',
+  },
+  iosDatePickerButton: {
+    backgroundColor: Colors.white,
+    borderRadius: BorderRadius.md,
+    paddingVertical: Spacing.md,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
