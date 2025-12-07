@@ -82,7 +82,7 @@ export default function OnboardingRoles({ onComplete }: OnboardingRolesProps) {
         if (onComplete) {
           onComplete();
         }
-        navigation.navigate('Welcome');
+        navigation.navigate('Home');
     }
   };
 

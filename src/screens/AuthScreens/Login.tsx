@@ -130,7 +130,6 @@ export default function Login({ onSignUpPress }: LoginProps) {
           </View>
         </ScrollView>
 
-        {/* Next Button - Positioned absolutely at bottom */}
         <AppButton
           text="Next"
           onPress={handleNext}

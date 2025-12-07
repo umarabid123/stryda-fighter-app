@@ -416,9 +416,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   titleContainer: {
-    // position: "absolute",
-    // top: (76 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
-    // left: (SCREEN_WIDTH - (329 / DESIGN_WIDTH) * SCREEN_WIDTH) / 2,
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
     alignItems: 'center',
     gap: Spacing.xs,

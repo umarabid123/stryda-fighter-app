@@ -36,7 +36,7 @@ export default function SignUp({ onNext }: SignUpProps) {
 
   const handleNext = () => {
     // Navigate to Register screen for next step
-    navigation.navigate("Register")
+    navigation.navigate("Verify")
     if (onNext) {
       onNext()
     }

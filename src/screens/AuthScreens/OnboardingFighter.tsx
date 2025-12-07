@@ -9,6 +9,7 @@ import {
   useColorScheme,
   TouchableOpacity,
   Image,
+  StatusBar,
 } from 'react-native';
 // Using a simple custom slider implementation
 import { useNavigation } from '@react-navigation/native';
@@ -56,7 +57,7 @@ export default function OnboardingFighter({ onComplete }: OnboardingFighterProps
     if (onComplete) {
       onComplete();
     }
-    navigation.navigate('Welcome');
+    navigation.navigate('Home');
   };
 
   return (
