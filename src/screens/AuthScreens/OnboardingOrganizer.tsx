@@ -17,6 +17,7 @@ import AppText from '../../components/common/AppText';
 import AppButton from '../../components/common/AppButton';
 import ProfileInput from '../../components/common/ProfileInput';
 import MeshGradientBackground from '../../components/common/MeshGradientBackground';
+import { useAuth } from '../../navigation';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -32,7 +33,7 @@ export default function OnboardingOrganizer({ onComplete }: OnboardingOrganizerP
   const navigation = useNavigation<NavigationProp<any>>();
   const colorScheme = useColorScheme();
   const colors = colorScheme === 'dark' ? Colors.dark : Colors.light;
-
+const{setIsAuthenticated} =useAuth()
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [jobTitle, setJobTitle] = useState('IFMA President');
   const [organisation, setOrganisation] = useState('Keddles Gym');
@@ -51,7 +52,7 @@ export default function OnboardingOrganizer({ onComplete }: OnboardingOrganizerP
     if (onComplete) {
       onComplete();
     }
-    navigation.navigate('Home');
+  setIsAuthenticated(true)
   };
 
   return (

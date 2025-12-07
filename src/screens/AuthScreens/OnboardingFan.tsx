@@ -54,7 +54,6 @@ export default function OnboardingFan({ onComplete }: OnboardingFanProps) {
     if (onComplete) {
       onComplete();
     }
-    // Set authentication to true to switch to AppNavigator (home page)
     setIsAuthenticated(true);
   };
 

@@ -1,14 +1,13 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Intro from '../screens/Intro/Intro';
-import Login from '../screens/AuthScreens/Login';
-import SignUp from '../screens/AuthScreens/Signup';
-import Verify from '../screens/AuthScreens/Verify';
 import CompleteProfile from '../screens/AuthScreens/CompleteProfile';
-import OnboardingRoles from '../screens/AuthScreens/OnboardingRoles';
+import Login from '../screens/AuthScreens/Login';
 import OnboardingFan from '../screens/AuthScreens/OnboardingFan';
 import OnboardingFighter from '../screens/AuthScreens/OnboardingFighter';
 import OnboardingOrganizer from '../screens/AuthScreens/OnboardingOrganizer';
-import Home from '../screens/Home';
+import OnboardingRoles from '../screens/AuthScreens/OnboardingRoles';
+import SignUp from '../screens/AuthScreens/Signup';
+import Verify from '../screens/AuthScreens/Verify';
+import Intro from '../screens/Intro/Intro';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +26,6 @@ const AuthNavigator = () => {
       <Stack.Screen name="OnboardingFan" component={OnboardingFan} />
       <Stack.Screen name="OnboardingFighter" component={OnboardingFighter} />
       <Stack.Screen name="OnboardingOrganizer" component={OnboardingOrganizer} />
-      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   );
 };

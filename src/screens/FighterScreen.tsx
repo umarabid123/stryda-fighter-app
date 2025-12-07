@@ -116,7 +116,6 @@ export default function FighterScreen() {
                         )}
                     />
                 </View>
-                <AppButton text='Manager' onPress={() => navigation.navigate('ManagerScreen')} />
             </ScrollView>
         </View>
     );
