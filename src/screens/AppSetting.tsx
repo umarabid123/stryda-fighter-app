@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import Header from '../components/common/Header';
 import Toggle from '../components/common/Toggle';
 import { Colors, Spacing } from '../constant';
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    // paddingTop: 40
+    paddingTop: Platform.OS === 'ios' ? 0 : 20
   },
   optionsContainer: {
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
