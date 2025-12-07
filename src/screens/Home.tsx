@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import Header from '../components/common/Header';
 import MeshGradientBackground from '../components/common/MeshGradientBackground';

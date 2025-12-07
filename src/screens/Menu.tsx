@@ -1,6 +1,4 @@
-import React from 'react';
-import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
-import MeshGradientBackground from '../components/common/MeshGradientBackground';
+import { View, StyleSheet, Dimensions, Platform } from 'react-native';
 import Header from '../components/common/Header';
 import { Colors } from '../constant';
 import MenuItem from '../components/MenuItem';

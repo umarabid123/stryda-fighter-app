@@ -128,10 +128,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  hamburgerLine: {
-    width: (20 / DESIGN_WIDTH) * SCREEN_WIDTH,
-    height: 2,
-    backgroundColor: Colors.white,
-    borderRadius: 1,
-  },
 });

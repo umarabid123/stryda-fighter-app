@@ -1,4 +1,4 @@
-import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { Colors, Typography, BorderRadius, DESIGN_WIDTH } from '../constant';
 import AppText from './common/AppText';
 import AppButton from './common/AppButton';

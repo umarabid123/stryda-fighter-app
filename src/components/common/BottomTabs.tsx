@@ -83,9 +83,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: (4 / DESIGN_WIDTH) * SCREEN_WIDTH,
   },
-  tabIcon: {
-    lineHeight: (24 / DESIGN_WIDTH) * SCREEN_WIDTH,
-  },
   tabLabel: {
     lineHeight:16,
   
