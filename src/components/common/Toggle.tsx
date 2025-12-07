@@ -103,8 +103,6 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.md,
   },
   content: {
-    flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
     gap: Spacing.md,
   },

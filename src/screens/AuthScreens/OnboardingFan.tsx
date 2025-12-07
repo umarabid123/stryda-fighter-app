@@ -219,8 +219,8 @@ const styles = StyleSheet.create({
   },
   profilePictureContainer: {
     alignItems: 'center',
-    marginTop: ((208 - 96 - 30) / DESIGN_HEIGHT) * SCREEN_HEIGHT, // Position from top: 208px minus title container height
-    marginBottom: ((388 - 208 - 120 - 18) / DESIGN_HEIGHT) * SCREEN_HEIGHT, // Space to options container
+    marginTop: 20,
+    marginBottom: 40
   },
   profilePictureWrapper: {
     position: 'relative',
@@ -232,7 +232,6 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
