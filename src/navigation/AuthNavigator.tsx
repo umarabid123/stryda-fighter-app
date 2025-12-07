@@ -8,6 +8,7 @@ import OnboardingRoles from '../screens/AuthScreens/OnboardingRoles';
 import OnboardingFan from '../screens/AuthScreens/OnboardingFan';
 import OnboardingFighter from '../screens/AuthScreens/OnboardingFighter';
 import OnboardingOrganizer from '../screens/AuthScreens/OnboardingOrganizer';
+import Home from '../screens/Home';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ const AuthNavigator = () => {
       <Stack.Screen name="OnboardingFan" component={OnboardingFan} />
       <Stack.Screen name="OnboardingFighter" component={OnboardingFighter} />
       <Stack.Screen name="OnboardingOrganizer" component={OnboardingOrganizer} />
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   );
 };
