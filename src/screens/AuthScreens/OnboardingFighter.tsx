@@ -14,7 +14,7 @@ import {
 // Using a simple custom slider implementation
 import { useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
-import { Colors, Spacing, Typography, BorderRadius } from '../../constant';
+import { Colors, Spacing, Typography, BorderRadius, DESIGN_WIDTH, DESIGN_HEIGHT } from '../../constant';
 import AppText from '../../components/common/AppText';
 import AppButton from '../../components/common/AppButton';
 import MeshGradientBackground from '../../components/common/MeshGradientBackground';
@@ -23,9 +23,6 @@ import { useAuth } from '../../navigation';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-// Design dimensions from Figma: 393px width x 852px height
-const DESIGN_WIDTH = 393;
-const DESIGN_HEIGHT = 852;
 
 interface OnboardingFighterProps {
   onComplete?: () => void;

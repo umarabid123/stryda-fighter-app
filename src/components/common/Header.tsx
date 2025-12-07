@@ -6,12 +6,11 @@ import {
   Image,
   Pressable,
 } from 'react-native';
-import { Colors } from '../../constant';
+import { Colors, DESIGN_WIDTH } from '../../constant';
 import AppText from './AppText';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const DESIGN_WIDTH = 393;
 
 interface HeaderProps {
   title?: string;

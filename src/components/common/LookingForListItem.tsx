@@ -1,10 +1,6 @@
 import { View, StyleSheet, Image, Dimensions } from 'react-native';
 import AppText from './AppText';
 import { Colors } from '../../constant';
-import { Check, X } from 'lucide-react-native';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const DESIGN_WIDTH = 393;
 
 interface LookingForListItemProps {
     avatar?: any; // Allow requiring images

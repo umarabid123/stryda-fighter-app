@@ -10,7 +10,7 @@ import {
 } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import type { NavigationProp } from "@react-navigation/native"
-import { Colors, Spacing, Typography, BorderRadius } from "../../constant"
+import { Colors, Spacing, Typography, BorderRadius, DESIGN_WIDTH, DESIGN_HEIGHT } from "../../constant"
 import MeshGradientBackground from "../../components/common/MeshGradientBackground"
 import AppText from "../../components/common/AppText"
 import AppButton from "../../components/common/AppButton"
@@ -149,9 +149,6 @@ export default function Intro({ onSignUp, onLogIn }: IntroProps) {
   )
 }
 
-// Design dimensions from Figma: 393px width x 852px height
-const DESIGN_WIDTH = 393
-const DESIGN_HEIGHT = 852
 
 const styles = StyleSheet.create({
   container: {

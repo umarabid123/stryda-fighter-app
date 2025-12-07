@@ -5,11 +5,10 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { Colors, Typography } from '../../constant';
+import { Colors, Typography, DESIGN_WIDTH } from '../../constant';
 import AppText from './AppText';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const DESIGN_WIDTH = 393;
 
 interface Tab {
   label: string;

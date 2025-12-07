@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+
 import React from 'react';
 import {
     Dimensions,
@@ -18,10 +18,8 @@ import { Colors } from '../constant';
 import LookingForListItem from '../components/common/LookingForListItem';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const DESIGN_WIDTH = 393;
 
 export default function EventDetail() {
-    const navigation = useNavigation();
 
     return (
         <View style={styles.container}>

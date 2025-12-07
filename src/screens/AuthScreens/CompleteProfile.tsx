@@ -14,7 +14,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
 import { launchImageLibrary, ImagePickerResponse, MediaType } from 'react-native-image-picker';
-import { Colors, Spacing, Typography, BorderRadius, CountryOptions, GenderOptions, MonthNames } from '../../constant';
+import { Colors, Spacing, Typography, BorderRadius, CountryOptions, GenderOptions, MonthNames, DESIGN_WIDTH, DESIGN_HEIGHT } from '../../constant';
 import AppText from '../../components/common/AppText';
 import AppButton from '../../components/common/AppButton';
 import ProfileInput from '../../components/common/ProfileInput';
@@ -23,10 +23,6 @@ import SelectPicker from '../../components/common/SelectPicker';
 import DatePickerModal from '../../components/common/DatePickerModal';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
-
-// Design dimensions from Figma: 393px width x 852px height
-const DESIGN_WIDTH = 393;
-const DESIGN_HEIGHT = 852;
 
 const TOTAL_STEPS = 2;
 

@@ -1,11 +1,9 @@
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
-import { Colors, Typography, BorderRadius } from '../constant';
+import { Colors, Typography, BorderRadius, DESIGN_WIDTH } from '../constant';
 import AppText from './common/AppText';
 import AppButton from './common/AppButton';
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
-const DESIGN_WIDTH = 393;
-const DESIGN_HEIGHT = 852;
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 interface EmptyStateProps {
   title: string;

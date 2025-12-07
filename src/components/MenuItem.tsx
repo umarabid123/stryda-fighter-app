@@ -7,22 +7,19 @@ import {
   Image,
 } from 'react-native';
 import AppText from './common/AppText';
-import { Colors } from '../constant';
+import { Colors, DESIGN_WIDTH } from '../constant';
 import { Spacing } from '../constant/spacing';
 import { Typography } from '../constant/typography';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const DESIGN_WIDTH = 393;
 
 interface SettingsRowProps {
   icon?: any;
   label: string;
   onPress?: () => void;
-  arrowIcon?:any
-  rightElement?: React.ReactNode;
 }
 
-export default function MenuItem({ icon, label, onPress, arrowIcon }: SettingsRowProps) {
+export default function MenuItem({ icon, label, onPress }: SettingsRowProps) {
   return (
     <TouchableOpacity
       style={styles.container}
@@ -58,11 +55,6 @@ const styles = StyleSheet.create({
     marginHorizontal: (16 / DESIGN_WIDTH) * SCREEN_WIDTH,
   },
   leftSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.md,
-  },
-  rightSection: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.md,

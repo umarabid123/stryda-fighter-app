@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import Header from '../components/common/Header';
 import Toggle from '../components/common/Toggle';
-import { Colors, Spacing } from '../constant';
+import { Colors, Spacing, DESIGN_WIDTH } from '../constant';
 
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
-
-const DESIGN_WIDTH = 393;
 export default function AppSetting() {
 
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);

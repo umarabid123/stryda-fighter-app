@@ -9,7 +9,7 @@ import {
   useColorScheme,
   Dimensions,
 } from 'react-native';
-import { Colors, Spacing, Typography, BorderRadius } from '../../constant';
+import { Colors, Spacing, Typography, BorderRadius, DESIGN_WIDTH, DESIGN_HEIGHT } from '../../constant';
 import CustomIconButton from './CustomIconButton';
 import AppText from './AppText';
 import AppButton from './AppButton';
@@ -18,9 +18,6 @@ import Divider from './Divider';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-// Design dimensions from Figma: 393px width x 852px height
-const DESIGN_WIDTH = 393;
-const DESIGN_HEIGHT = 852;
 
 interface SocialAuthFormProps {
   title: string;

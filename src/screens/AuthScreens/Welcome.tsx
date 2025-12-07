@@ -13,16 +13,12 @@ import {
 } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import type { NavigationProp } from "@react-navigation/native"
-import { Colors, Spacing, Typography, BorderRadius } from "../../constant"
+import { Colors, Spacing, Typography, BorderRadius, DESIGN_WIDTH, DESIGN_HEIGHT } from "../../constant"
 import MeshGradientBackground from "../../components/common/MeshGradientBackground"
 import AppText from "../../components/common/AppText"
 import AppButton from "../../components/common/AppButton"
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window")
-
-// Design dimensions from Figma: 393px width x 852px height
-const DESIGN_WIDTH = 393
-const DESIGN_HEIGHT = 852
 
 interface WelcomeProps {
   onContinue?: () => void
@@ -30,7 +26,6 @@ interface WelcomeProps {
 }
 
 export default function Welcome({ onContinue, onSkip }: WelcomeProps) {
-  const navigation = useNavigation<NavigationProp<any>>()
   const colorScheme = useColorScheme()
   const colors = colorScheme === "dark" ? Colors.dark : Colors.light
 

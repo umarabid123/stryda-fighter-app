@@ -1,14 +1,13 @@
 "use client"
 
 import { View, StyleSheet, Dimensions, Switch } from "react-native"
-import { Colors } from '../constant/themes'
+import { Colors, DESIGN_WIDTH } from '../constant'
 import { Typography } from "../constant/typography"
 import { Spacing } from "../constant/spacing"
 import { useState } from "react"
 import AppText from "./common/AppText"
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window")
-const DESIGN_WIDTH = 393
 
 interface NotificationToggleProps {
   title: string
