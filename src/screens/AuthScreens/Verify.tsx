@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   scrollView: {
-    flexGrow: 1,
+    flexGrow: 0.9,
   },
   scrollContent: {
     flex:1,
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
     width: (329 / DESIGN_WIDTH) * SCREEN_WIDTH,
     alignItems: 'center',
     gap: Spacing.xl,
-    paddingBottom: 32,
+    // paddingBottom: (32 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
   },
   resendText: {
     width: '100%',

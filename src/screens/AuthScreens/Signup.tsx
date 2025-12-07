@@ -26,17 +26,6 @@ export default function SignUp({ onNext }: SignUpProps) {
       email={email}
       onEmailChange={setEmail}
       onNext={handleNext}
-      showProgressBar={true}
-      progressPercentage={(49 / 196.5) * 100}
-      buttonOpacity={0.6}
-      inputLabelFontSize={14}
-      inputFontSize={18}
-      inputLetterSpacing={0.36}
-      socialButtonHeight={51}
-      socialButtonPadding={20}
-      socialButtonTextSize={16}
-      titleContainerMarginBottom={60}
-      titleContainerMarginTop={32}
     />
   );
 }

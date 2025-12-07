@@ -1,7 +1,6 @@
 import React from 'react';
 import { StatusBar, useColorScheme, Platform, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Colors } from '../../constant';
 
 interface AppStatusBarProps {
   barStyle?: 'light-content' | 'dark-content' | 'default';
@@ -29,7 +28,6 @@ export default function AppStatusBar({
       {Platform.OS === 'ios' && translucent && (
         <View
           style={{
-            backgroundColor: Colors.primary,
             height: insets.top,
           }}
         />
