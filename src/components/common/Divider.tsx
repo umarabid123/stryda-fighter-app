@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
       },
       dividerLine: {
         flex: 1,
-        height: 1,
-        backgroundColor: "rgba(255, 255, 255, 0.05)",
+        height: 2,
+        backgroundColor: Colors.grayBlack,
       },
       dividerText: {
         marginHorizontal: 10,

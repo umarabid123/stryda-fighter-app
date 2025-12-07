@@ -148,24 +148,24 @@ export default function SocialAuthForm({
             <Divider />
 
             {/* Email Input */}
-            <View style={styles.inputContainer}>
-              <AppText
-                text="E-mail"
-                fontSize={inputLabelFontSize}
-                fontName="CircularStd-Medium"
-                color={Colors.white}
-                style={styles.inputLabel}
-              />
-              <TextInput
-                style={[styles.input, { fontSize: inputFontSize, letterSpacing: inputLetterSpacing }]}
-                placeholder="your@email.com"
-                placeholderTextColor="rgba(255, 255, 255, 0.5)"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                value={email}
-                onChangeText={onEmailChange}
-              />
-            </View>
+              <View style={[styles.inputContainer]}>
+                <AppText
+                  text="E-mail"
+                  fontSize={inputLabelFontSize}
+                  fontName="CircularStd-Medium"
+                  color={Colors.white}
+                  style={styles.inputLabel}
+                />
+                <TextInput
+                  style={[styles.input, { fontSize: inputFontSize, letterSpacing: inputLetterSpacing }]}
+                  placeholder="your@email.com"
+                  placeholderTextColor="rgba(255, 255, 255, 0.5)"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  value={email}
+                  onChangeText={onEmailChange}
+                />
+              </View>
           </View>
         </ScrollView>
 
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     marginTop: (70 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
   },
   scrollContent: {
-    paddingHorizontal: (32 / DESIGN_WIDTH) * SCREEN_WIDTH,
+    paddingHorizontal: (20 / DESIGN_WIDTH) * SCREEN_WIDTH,
     paddingBottom: (200 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
   },
   titleContainer: {
@@ -262,6 +262,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.lg,
     paddingVertical: Spacing.md,
     gap: Spacing.xs,
+    minHeight: 51, // Match button height
   },
   inputLabel: {
     letterSpacing: 0.24,
