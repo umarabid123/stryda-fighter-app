@@ -45,7 +45,7 @@ const ProfileRow = ({ label, value, children, labelStyle }: any) => (
 );
 
 export default function FighterProfileScreen() {
-    const navigation = useNavigation()
+    const navigation = useNavigation<any>()
     return (
         <View style={styles.container}>
             <Header isBack={true} />
@@ -103,7 +103,7 @@ export default function FighterProfileScreen() {
                 <View style={styles.divider} />
 
                 {/* Manager Section */}
-                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('ManagerScreen') }>
+                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('ManagerScreen')}>
                     <AppText text="Manager" fontSize={18} color={Colors.white} style={styles.sectionTitle} />
                     <View style={styles.managerCard}>
                         <Image source={require('../../assets/images/profile-img.png')} style={styles.managerAvatar} />
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.black,
-        paddingTop: 40,
+        // paddingTop: 40,
     },
     scrollContent: {
         paddingBottom: 40,

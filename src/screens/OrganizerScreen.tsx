@@ -18,7 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 export default function OrganizerScreen() {
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
     const fighters = [
         {
             id: "1",
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.black,
-        paddingTop: 40,
+        // paddingTop: 40,
     },
     scrollContent: {
         paddingBottom: 40,

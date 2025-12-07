@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    paddingTop: 60,
+    // paddingTop: 60,
   },
   content: {
     paddingHorizontal: 20,

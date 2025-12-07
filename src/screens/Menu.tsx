@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 const Menu = () => {
-const navigation = useNavigation<any>()
+  const navigation = useNavigation<any>()
   return (
     <View style={styles.container}>
       <Header title="Menu" />
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    paddingTop: 40,
-    
+    // paddingTop: 40,
+
   },
 });

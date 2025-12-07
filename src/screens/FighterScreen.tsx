@@ -21,7 +21,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 
 export default function FighterScreen() {
-    const navigation = useNavigation()
+    const navigation = useNavigation<any>()
     const fighters = [
         {
             id: "1",
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.black,
-        paddingTop: 40,
+        // paddingTop: 40,
     },
     categoriesContainer: {
         marginTop: 24,

@@ -85,7 +85,7 @@ export default function DiscoverScreen() {
       weightClass: "75 kg",
     },
   ];
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   return (
     <View style={styles.container}>
       <Header />
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.black,
     width: SCREEN_WIDTH,
-    paddingTop: 40,
+    // paddingTop: 40,
   },
   cardSpacing: {
     marginBottom: 0,
