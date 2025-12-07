@@ -5,6 +5,8 @@ import {
     ScrollView,
     Image,
     Dimensions,
+    Touchable,
+    TouchableOpacity,
 } from 'react-native';
 import Header from '../components/common/Header';
 import AppText from '../components/common/AppText';
@@ -12,6 +14,7 @@ import AppButton from '../components/common/AppButton';
 import InfoRow from '../components/common/InfoRow';
 import NextFightCard from '../components/NextFightCard';
 import { Colors } from '../constant';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Tag = ({ text, icon }: { text: string; icon?: any }) => (
@@ -42,6 +45,7 @@ const ProfileRow = ({ label, value, children, labelStyle }: any) => (
 );
 
 export default function FighterProfileScreen() {
+    const navigation = useNavigation()
     return (
         <View style={styles.container}>
             <Header isBack={true} />
@@ -99,7 +103,7 @@ export default function FighterProfileScreen() {
                 <View style={styles.divider} />
 
                 {/* Manager Section */}
-                <View style={styles.section}>
+                <TouchableOpacity style={styles.section} onPress={() => navigation.navigate('ManagerScreen') }>
                     <AppText text="Manager" fontSize={18} color={Colors.white} style={styles.sectionTitle} />
                     <View style={styles.managerCard}>
                         <Image source={require('../../assets/images/profile-img.png')} style={styles.managerAvatar} />
@@ -111,7 +115,7 @@ export default function FighterProfileScreen() {
                             <AppText text="Assouik Gym Management" fontSize={16} color={Colors.textSecondary} />
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
 
                 <View style={styles.divider} />
 

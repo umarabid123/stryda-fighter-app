@@ -5,12 +5,10 @@ import Login from '../screens/AuthScreens/Login';
 import SignUp from '../screens/AuthScreens/Signup';
 import Verify from '../screens/AuthScreens/Verify';
 import CompleteProfile from '../screens/AuthScreens/CompleteProfile';
-import OnboardingRoles from '../screens/AuthScreens/OnboardingRoles';
 import OnboardingFan from '../screens/AuthScreens/OnboardingFan';
 import OnboardingFighter from '../screens/AuthScreens/OnboardingFighter';
 import OnboardingOrganizer from '../screens/AuthScreens/OnboardingOrganizer';
-import Welcome from '../screens/AuthScreens/Welcome';
-import Menu from '../screens/Menu';
+import OnboardingRoles from '../screens/AuthScreens/OnboardingRoles';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,7 +29,6 @@ const AuthNavigator = () => {
       <Stack.Screen name="OnboardingFan" component={OnboardingFan} />
       <Stack.Screen name="OnboardingFighter" component={OnboardingFighter} />
       <Stack.Screen name="OnboardingOrganizer" component={OnboardingOrganizer} />
-      <Stack.Screen name="Welcome" component={Welcome} />
     </Stack.Navigator>
     </>
   );

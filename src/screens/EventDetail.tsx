@@ -13,8 +13,9 @@ import {
 import AppButton from '../components/common/AppButton';
 import AppText from '../components/common/AppText';
 import Header from '../components/common/Header';
-import LookingForListItem from '../components/special/LookingForListItem';
+
 import { Colors } from '../constant';
+import LookingForListItem from '../components/common/LookingForListItem';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const DESIGN_WIDTH = 393;
