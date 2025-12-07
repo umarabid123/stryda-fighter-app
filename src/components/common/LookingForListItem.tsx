@@ -1,5 +1,5 @@
 import { View, StyleSheet, Image, Dimensions } from 'react-native';
-import AppText from '../common/AppText';
+import AppText from './AppText';
 import { Colors } from '../../constant';
 import { Check, X } from 'lucide-react-native';
 
