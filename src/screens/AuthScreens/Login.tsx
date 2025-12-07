@@ -23,11 +23,6 @@ export default function Login({ onSignUpPress }: LoginProps) {
       email={email}
       onEmailChange={setEmail}
       onNext={handleNext}
-      showProgressBar={false}
-      buttonOpacity={0.5}
-      inputLabelFontSize={14}
-      inputFontSize={14}
-      inputLetterSpacing={0.28}
     />
   );
 }

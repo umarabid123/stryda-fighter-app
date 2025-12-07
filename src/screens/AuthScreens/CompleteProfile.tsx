@@ -14,13 +14,13 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';
 import { launchImageLibrary, ImagePickerResponse, MediaType } from 'react-native-image-picker';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { Colors, Spacing, Typography, BorderRadius } from '../../constant';
+import { Colors, Spacing, Typography, BorderRadius, CountryOptions, GenderOptions, MonthNames } from '../../constant';
 import AppText from '../../components/common/AppText';
 import AppButton from '../../components/common/AppButton';
 import ProfileInput from '../../components/common/ProfileInput';
 import MeshGradientBackground from '../../components/common/MeshGradientBackground';
 import SelectPicker from '../../components/common/SelectPicker';
+import DatePickerModal from '../../components/common/DatePickerModal';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -53,67 +53,6 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
   const [socialLinks, setSocialLinks] = useState([
     { platform: 'Instagram', url: 'https://www.instagram.com/laugepetersen' },
   ]);
-
-  const genderOptions = ['Male', 'Female', 'Other', 'Prefer not to say'];
-  const countryOptions = [
-    'England',
-    'United States',
-    'Canada',
-    'Australia',
-    'Germany',
-    'France',
-    'Spain',
-    'Italy',
-    'Brazil',
-    'Mexico',
-    'Japan',
-    'China',
-    'India',
-    'Thailand',
-    'Netherlands',
-    'Belgium',
-    'Sweden',
-    'Norway',
-    'Denmark',
-    'Poland',
-    'Portugal',
-    'Greece',
-    'Turkey',
-    'Russia',
-    'South Korea',
-    'Singapore',
-    'Malaysia',
-    'Philippines',
-    'Indonesia',
-    'Vietnam',
-    'New Zealand',
-    'South Africa',
-    'Argentina',
-    'Chile',
-    'Colombia',
-    'Peru',
-    'Venezuela',
-    'Ecuador',
-    'Uruguay',
-    'Paraguay',
-    'Bolivia',
-    'Costa Rica',
-    'Panama',
-    'Guatemala',
-    'Honduras',
-    'El Salvador',
-    'Nicaragua',
-    'Dominican Republic',
-    'Cuba',
-    'Jamaica',
-    'Trinidad and Tobago',
-    'Barbados',
-    'Bahamas',
-    'Belize',
-    'Guyana',
-    'Suriname',
-    'Other',
-  ];
 
   // Calculate progress: Step 1 = 25%, Step 2 = 50%
   const progressPercentage = currentStep === 1 ? 25 : 50;
@@ -152,23 +91,16 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
   };
 
   const formatDate = (date: Date): string => {
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const month = months[date.getMonth()];
+    const month = MonthNames[date.getMonth()];
     const day = date.getDate().toString().padStart(2, '0');
     const year = date.getFullYear();
     return `${month} ${day}, ${year}`;
   };
 
   const handleDateChange = (event: any, selectedDate?: Date) => {
-    if (Platform.OS === 'android') {
-      setShowDatePicker(false);
-    }
     if (selectedDate) {
       setBirthDate(selectedDate);
       setDateOfBirth(formatDate(selectedDate));
-    }
-    if (Platform.OS === 'ios') {
-      // On iOS, keep the picker open until user confirms
     }
   };
 
@@ -499,7 +431,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
         visible={showGenderPicker}
         onClose={() => setShowGenderPicker(false)}
         title="Select Gender"
-        options={genderOptions}
+        options={GenderOptions}
         selectedValue={gender}
         onSelect={setGender}
       />
@@ -509,37 +441,21 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
         visible={showCountryPicker}
         onClose={() => setShowCountryPicker(false)}
         title="Select Country"
-        options={countryOptions}
+        options={CountryOptions}
         selectedValue={country}
         onSelect={setCountry}
       />
 
-      {/* Date Picker */}
-      {showDatePicker && (
-        <DateTimePicker
-          value={birthDate}
-          mode="date"
-          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-          onChange={handleDateChange}
-          maximumDate={new Date()}
-          minimumDate={new Date(1900, 0, 1)}
-        />
-      )}
-      {Platform.OS === 'ios' && showDatePicker && (
-        <View style={styles.iosDatePickerContainer}>
-          <TouchableOpacity
-            style={styles.iosDatePickerButton}
-            onPress={() => setShowDatePicker(false)}
-          >
-            <AppText
-              text="Done"
-              fontSize={Typography.fontSize.md}
-              fontName="CircularStd-Medium"
-              color={Colors.white}
-            />
-          </TouchableOpacity>
-        </View>
-      )}
+      {/* Date Picker Modal */}
+      <DatePickerModal
+        visible={showDatePicker}
+        onClose={() => setShowDatePicker(false)}
+        title="Select Date of Birth"
+        value={birthDate}
+        onChange={handleDateChange}
+        maximumDate={new Date()}
+        minimumDate={new Date(1900, 0, 1)}
+      />
     </View>
   );
 }
@@ -787,23 +703,5 @@ const styles = StyleSheet.create({
   },
   laterButton: {
     paddingVertical: Spacing.sm,
-  },
-  iosDatePickerContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: Colors.black,
-    paddingHorizontal: Spacing.xl,
-    paddingVertical: Spacing.lg,
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(255, 255, 255, 0.15)',
-  },
-  iosDatePickerButton: {
-    backgroundColor: Colors.white,
-    borderRadius: BorderRadius.md,
-    paddingVertical: Spacing.md,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
