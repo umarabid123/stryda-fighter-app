@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
 import MeshGradientBackground from '../components/common/MeshGradientBackground';
 import Header from '../components/common/Header';
 import { Colors } from '../constant';
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    // paddingTop: 40,
+    paddingTop: Platform.OS === 'ios' ? 0 : 20
 
   },
 });

@@ -6,6 +6,7 @@ import {
     Dimensions,
     TouchableOpacity,
     FlatList,
+    Platform,
 } from 'react-native';
 import { Svg, Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 import Header from '../components/common/Header';
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.black,
-        // paddingTop: 40,
+        paddingTop: Platform.OS === 'ios' ? 0 : 20
     },
     categoriesContainer: {
         marginTop: 24,

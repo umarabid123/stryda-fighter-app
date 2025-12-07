@@ -6,6 +6,7 @@ import {
     Image,
     Dimensions,
     FlatList,
+    Platform,
 } from 'react-native';
 import Header from '../components/common/Header';
 import AppText from '../components/common/AppText';
@@ -158,7 +159,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.black,
-        // paddingTop: 40,
+        paddingTop: Platform.OS === 'ios' ? 0 : 20
     },
     scrollContent: {
         paddingBottom: 40,

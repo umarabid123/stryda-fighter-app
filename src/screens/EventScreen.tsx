@@ -1,4 +1,4 @@
-import { View, StyleSheet, Dimensions, ScrollView, TouchableOpacity, FlatList } from 'react-native'
+import { View, StyleSheet, Dimensions, ScrollView, TouchableOpacity, FlatList, Platform } from 'react-native'
 import React from 'react'
 import { Colors } from '../constant'
 import MeshGradientBackground from '../components/common/MeshGradientBackground'
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    // paddingTop: 40,
+    paddingTop: Platform.OS === 'ios' ? 0 : 20
   },
   scrollContent: {
     paddingHorizontal: 20,

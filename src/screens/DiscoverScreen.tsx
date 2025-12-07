@@ -3,6 +3,7 @@ import React from 'react';
 import {
   Dimensions,
   FlatList,
+  Platform,
   ScrollView,
   StyleSheet,
   View,
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.black,
     width: SCREEN_WIDTH,
-    // paddingTop: 40,
+    paddingTop: Platform.OS === 'ios' ? 0 : 20
   },
   cardSpacing: {
     marginBottom: 0,
