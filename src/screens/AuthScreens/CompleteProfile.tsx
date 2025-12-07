@@ -80,7 +80,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
       if (onComplete) {
         onComplete();
       }
-      navigation.navigate('Welcome');
+      navigation.navigate('Home');
     }
   };
 
@@ -94,7 +94,7 @@ export default function CompleteProfile({ onComplete }: CompleteProfileProps) {
     if (onComplete) {
       onComplete();
     }
-    navigation.navigate('Welcome');
+    navigation.navigate('Home');
   };
 
   const renderStepContent = () => {

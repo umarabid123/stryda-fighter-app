@@ -51,7 +51,7 @@ export default function OnboardingOrganizer({ onComplete }: OnboardingOrganizerP
     if (onComplete) {
       onComplete();
     }
-    navigation.navigate('Welcome');
+    navigation.navigate('Home');
   };
 
   return (

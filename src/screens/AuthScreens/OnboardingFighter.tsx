@@ -38,7 +38,7 @@ export default function OnboardingFighter({ onComplete }: OnboardingFighterProps
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [weightDivision, setWeightDivision] = useState('63.5');
   const [weightRange, setWeightRange] = useState(2.0);
-  const [height, setHeight] = useState('170');
+  const [height, setHeight] = useState('230');
   const [gym, setGym] = useState('Keddles Gym');
 
   const handleProfileImagePress = () => {
@@ -326,10 +326,7 @@ export default function OnboardingFighter({ onComplete }: OnboardingFighterProps
               </TouchableOpacity>
             </View>
           </View>
-        </ScrollView>
-
-        {/* Complete Button */}
-        <View style={styles.completeButtonContainer}>
+          <View style={styles.completeButtonContainer}>
           <AppButton
             text="That's it, complete"
             onPress={handleComplete}
@@ -337,6 +334,8 @@ export default function OnboardingFighter({ onComplete }: OnboardingFighterProps
             textStyle={styles.completeButtonText}
           />
         </View>
+        </ScrollView>
+        
       </KeyboardAvoidingView>
     </View>
   );
@@ -354,7 +353,7 @@ const styles = StyleSheet.create({
   },
   progressContainer: {
     position: 'absolute',
-    top: (43 / DESIGN_HEIGHT) * SCREEN_HEIGHT, // 5.01% from top
+    top: (60 / DESIGN_HEIGHT) * SCREEN_HEIGHT, 
     left: (SCREEN_WIDTH - (197 / DESIGN_WIDTH) * SCREEN_WIDTH) / 2,
     width: (197 / DESIGN_WIDTH) * SCREEN_WIDTH,
     height: 4,
@@ -553,10 +552,6 @@ const styles = StyleSheet.create({
     gap: Spacing.xs,
   },
   completeButtonContainer: {
-    position: 'absolute',
-    bottom: (41 / DESIGN_HEIGHT) * SCREEN_HEIGHT,
-    left: 0,
-    right: 0,
     alignItems: 'center',
     paddingHorizontal: (32 / DESIGN_WIDTH) * SCREEN_WIDTH,
     zIndex: 10,
